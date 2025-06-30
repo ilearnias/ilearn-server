@@ -22,7 +22,7 @@ import { AchieversService } from './achievers.service';
 import { CreateAchieversDto } from './dto/create.dto';
 import { QueryAchieversDto } from './dto/query.dto';
 import { UpdateAchieversDto } from './dto/update.dto';
-import { DataResponseDto } from 'src/shared/dto/data-response.dto';
+import { DataResponseDto } from '../shared/dto/data-response.dto';
 
 /**
  * Controller for managing achievers
@@ -32,7 +32,7 @@ import { DataResponseDto } from 'src/shared/dto/data-response.dto';
 @Controller('achievers')
 @ApiBearerAuth()
 export class AchieversController {
-  constructor(private readonly achieversService: AchieversService) {}
+  constructor(private readonly achieversService: AchieversService) { }
 
   /**
    * Create a new achiever
