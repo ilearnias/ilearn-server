@@ -1,7 +1,24 @@
-import { Body, Controller, Delete, FileTypeValidator, MaxFileSizeValidator, ParseFilePipe, Post, UploadedFile, UploadedFiles, UseInterceptors } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  FileTypeValidator,
+  MaxFileSizeValidator,
+  ParseFilePipe,
+  Post,
+  UploadedFile,
+  UploadedFiles,
+  UseInterceptors,
+} from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { ApiBody, ApiConsumes, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { DataResponseDto } from '../SHARED/dto/data-response.dto';
+import {
+  ApiBody,
+  ApiConsumes,
+  ApiOperation,
+  ApiResponse,
+  ApiTags,
+} from '@nestjs/swagger';
+import { DataResponseDto } from '../shared/dto/data-response.dto';
 import { UploadService } from './upload.service';
 
 class FileUploadDto {
@@ -16,7 +33,8 @@ export class UploadController {
   @Post('image')
   @ApiOperation({
     summary: 'Upload an image file',
-    description: 'Upload a single image file (JPEG, PNG, or WEBP). Maximum file size: 3MB'
+    description:
+      'Upload a single image file (JPEG, PNG, or WEBP). Maximum file size: 3MB',
   })
   @ApiConsumes('multipart/form-data')
   @ApiBody({
@@ -38,15 +56,15 @@ export class UploadController {
       type: 'object',
       properties: {
         success: { type: 'boolean', example: true },
-        data: { 
+        data: {
           type: 'object',
           properties: {
-            url: { type: 'string', example: 'https://example.com/image.jpg' }
-          }
+            url: { type: 'string', example: 'https://example.com/image.jpg' },
+          },
         },
-        message: { type: 'string', example: 'Image uploaded successfully' }
-      }
-    }
+        message: { type: 'string', example: 'Image uploaded successfully' },
+      },
+    },
   })
   @ApiResponse({
     status: 400,
@@ -55,9 +73,9 @@ export class UploadController {
       type: 'object',
       properties: {
         success: { type: 'boolean', example: false },
-        error: { type: 'string', example: 'File size must not exceed 3MB' }
-      }
-    }
+        error: { type: 'string', example: 'File size must not exceed 3MB' },
+      },
+    },
   })
   @UseInterceptors(FileInterceptor('file'))
   async uploadImage(
@@ -68,7 +86,8 @@ export class UploadController {
           new FileTypeValidator({ fileType: /(jpe?g|png|webp)$/i }),
         ],
       }),
-    ) file: Express.Multer.File
+    )
+    file: Express.Multer.File,
   ): Promise<DataResponseDto> {
     return this.uploadService.uploadImage(file);
   }
@@ -76,7 +95,7 @@ export class UploadController {
   @Post('file')
   @ApiOperation({
     summary: 'Upload any file type',
-    description: 'Upload a single file of any supported format'
+    description: 'Upload a single file of any supported format',
   })
   @ApiConsumes('multipart/form-data')
   @ApiBody({
@@ -98,19 +117,22 @@ export class UploadController {
       type: 'object',
       properties: {
         success: { type: 'boolean', example: true },
-        data: { 
+        data: {
           type: 'object',
           properties: {
-            url: { type: 'string', example: 'https://example.com/document.pdf' }
-          }
+            url: {
+              type: 'string',
+              example: 'https://example.com/document.pdf',
+            },
+          },
         },
-        message: { type: 'string', example: 'File uploaded successfully' }
-      }
-    }
+        message: { type: 'string', example: 'File uploaded successfully' },
+      },
+    },
   })
   @UseInterceptors(FileInterceptor('file'))
   async uploadFile(
-    @UploadedFile() file: Express.Multer.File
+    @UploadedFile() file: Express.Multer.File,
   ): Promise<DataResponseDto> {
     return this.uploadService.fileUpload(file);
   }
@@ -118,7 +140,7 @@ export class UploadController {
   @Delete()
   @ApiOperation({
     summary: 'Delete a file',
-    description: 'Delete a file from S3 storage using its URL'
+    description: 'Delete a file from S3 storage using its URL',
   })
   @ApiBody({
     schema: {
@@ -128,10 +150,10 @@ export class UploadController {
         url: {
           type: 'string',
           example: 'https://example.com/file.jpg',
-          description: 'URL of the file to delete'
-        }
-      }
-    }
+          description: 'URL of the file to delete',
+        },
+      },
+    },
   })
   @ApiResponse({
     status: 200,
@@ -140,9 +162,9 @@ export class UploadController {
       type: 'object',
       properties: {
         success: { type: 'boolean', example: true },
-        message: { type: 'string', example: 'File deleted successfully' }
-      }
-    }
+        message: { type: 'string', example: 'File deleted successfully' },
+      },
+    },
   })
   @ApiResponse({
     status: 404,
@@ -151,13 +173,11 @@ export class UploadController {
       type: 'object',
       properties: {
         success: { type: 'boolean', example: false },
-        error: { type: 'string', example: 'File not found' }
-      }
-    }
+        error: { type: 'string', example: 'File not found' },
+      },
+    },
   })
-  async deleteFile(
-    @Body('url') url: string
-  ): Promise<any> {
+  async deleteFile(@Body('url') url: string): Promise<any> {
     return this.uploadService.deleteFromS3(url);
   }
 }

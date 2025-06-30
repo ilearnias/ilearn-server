@@ -1,36 +1,49 @@
 import { CacheModule } from '@nestjs/cache-manager';
 import { Module } from '@nestjs/common';
-import { TokenManagementModule } from './AUTH/TOKEN_MANAGEMENT/token_management.module';
-import { UsersModule } from './AUTH/USERS/users.module';
-import { NestJwtModule } from './AUTH/strategy/jwt_access.strategy';
-import { ConfigurationModule } from './CONFIG/config.module';
-import { DatabaseModule } from './DATABASE/database.module';
-import { UploadModule } from './UPLOAD/upload.module';
-import { RoleModule } from './AUTH/ROLES/role.module';
-import { PermissionModule } from './AUTH/PERMISSIONS/permission.module';
-import { RolePermissionModule } from './AUTH/ROLE_PERMISSION/role_permission.module';
-import { SubstanceTypeModule } from './SUBSTANCE_TYPE/substance_type.module';
-import { SocialWorkSubstanceUseModule } from './SUBSTANCE_USE/substance_use.module';
+// import { NestJwtModule } from './AUTHH/strategy/jwt_access.strategy';
+import { ConfigurationModule } from './config/config.module';
+import { DatabaseModule } from './database/database.module';
+import { UploadModule } from './upload/upload.module';
+import { AchieversModule } from './achievers/achievers.module';
+import { TeamModule } from './team/team.module';
+import { UserModule } from './user/user.module';
+import { AuthModule } from './auth/auth.module';
+import { GalleryTitleModule } from './gallery_title/gallery_title.module';
+import { GalleryModule } from './gallery/gallery.module';
+import { SuccessStoriesModule } from './success_stories/success_stories.module';
+import { BlogModule } from './blog/blog.module';
+import { BlogCategoriesModule } from './blog_categories/blog_categories.module';
+import { ResultModule } from './result/result.module';
+import { ProgramModule } from './program/program.module';
+import { ContactsModule } from './contacts/contacts.module';
+import { ResultSummaryModule } from './result_summary/result_summary.module';
+import { SharedAuthModule } from './shared/shared-auth.module';
 
 @Module({
   imports: [
     DatabaseModule,
     ConfigurationModule,
-    NestJwtModule,
+    SharedAuthModule,
+    // NestJwtModule,
     CacheModule.register({ isGlobal: true }),
-    SubstanceTypeModule,
-    SocialWorkSubstanceUseModule,
 
-    UsersModule,
+    AuthModule,
+    UserModule,
+
+    ProgramModule,
+    ResultModule,
+    ResultSummaryModule,
+    SuccessStoriesModule,
+    TeamModule,
+    GalleryModule,
+    GalleryTitleModule,
+    ContactsModule,
+    BlogModule,
+    BlogCategoriesModule,
+    AchieversModule,
+
+    // Legacy modules
     UploadModule,
-    TokenManagementModule,
-
-    // ----------------------------------------
-
-    // Role
-    RoleModule,
-    PermissionModule,
-    RolePermissionModule,
   ],
   controllers: [],
   providers: [],

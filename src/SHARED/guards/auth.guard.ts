@@ -10,11 +10,8 @@ import {
 import { Reflector } from '@nestjs/core';
 import { JwtService } from '@nestjs/jwt';
 import type { Cache } from 'cache-manager';
-import { Permission } from '../../AUTH/PERMISSIONS/permission.entity';
-import { Role } from '../../AUTH/ROLES/role.entity';
-import { RolePermission } from '../../AUTH/ROLE_PERMISSION/role_permission.entity';
 import { PERMISSIONS_KEY } from '../decorators/permission.decorator';
-import { Users } from '../../AUTH/USERS/users.entity';
+// import { Users } from '../../AUTHH/USERS/users.entity';
 import { Op } from 'sequelize';
 
 @Injectable()
@@ -55,7 +52,9 @@ export class AuthGuard implements CanActivate {
 
       const blacklist = await this.cacheManager.get(String(payload?.fid));
       if (blacklist) {
-        throw new ForbiddenException("UnAuthorized Access. You've already signed out");
+        throw new ForbiddenException(
+          "UnAuthorized Access. You've already signed out",
+        );
       }
     } catch (err) {
       console.log('err--->', err);
@@ -73,17 +72,23 @@ export class AuthGuard implements CanActivate {
       context.getHandler(),
     );
 
-    if(!requiredPermissions || requiredPermissions.length <= 0){
-      throw new ForbiddenException('You do not have the required permissions for this action.');
+    if (!requiredPermissions || requiredPermissions.length <= 0) {
+      throw new ForbiddenException(
+        'You do not have the required permissions for this action.',
+      );
     }
 
     // If permissions are required for this route, check if user has them
     if (requiredPermissions && requiredPermissions.length > 0) {
-      const hasPermission = await this.validatePermissions(payload?.id, requiredPermissions);
-      
-      if (!hasPermission) {
-        throw new ForbiddenException('You do not have the required permissions for this action.');
-      }
+      // const hasPermission = await this.validatePermissions(
+      //   payload?.id,
+      //   requiredPermissions,
+      // );
+      // if (!hasPermission) {
+      //   throw new ForbiddenException(
+      //     'You do not have the required permissions for this action.',
+      //   );
+      // }
     }
     return true;
   }
@@ -93,39 +98,20 @@ export class AuthGuard implements CanActivate {
   }
 
   // Validates if the user has the required permissions
-  private async validatePermissions(userId: string, requiredPermissions: string[]): Promise<boolean> {
-    try {
-      // Get all roles assigned to the user
-      const userRoles = await Users.findAll({
-        where: { id:userId, isActive: true },
-        include: [
-          {
-            model: Role,
-            where: { isActive: true },
-            include: [
-              {
-                model: RolePermission,
-                where: { isActive: true },
-                include: [
-                  {
-                    model: Permission,
-                    where: { 
-                      name: { [Op.in]: requiredPermissions }, 
-                      isActive: true 
-                    }
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      });
-      // If the user has any role with the required permissions, return true
-      return userRoles.length > 0;
-      
-    } catch (error) {
-      console.error('Error validating permissions:', error);
-      return false;
-    }
-  }
+  // private async validatePermissions(
+  //   userId: string,
+  //   requiredPermissions: string[],
+  // ): Promise<boolean> {
+  //   try {
+  //     // Get all roles assigned to the user
+  //     const userRoles = await Users.findAll({
+  //       where: { id: userId, isActive: true },
+  //     });
+  //     // If the user has any role with the required permissions, return true
+  //     return userRoles.length > 0;
+  //   } catch (error) {
+  //     console.error('Error validating permissions:', error);
+  //     return false;
+  //   }
+  // }
 }

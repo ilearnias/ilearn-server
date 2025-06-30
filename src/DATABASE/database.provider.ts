@@ -1,29 +1,41 @@
 import { Sequelize } from 'sequelize-typescript';
-import { Permission } from '../AUTH/PERMISSIONS/permission.entity';
-import { RolePermission } from '../AUTH/ROLE_PERMISSION/role_permission.entity';
-import { Role } from '../AUTH/ROLES/role.entity';
-import { TokenManagement } from '../AUTH/TOKEN_MANAGEMENT/token_management.entity';
-import { Users } from '../AUTH/USERS/users.entity';
-import { ConfigurationService } from '../CONFIG/config.service';
 
-import { SubstanceType } from 'src/SUBSTANCE_TYPE/substance_type.entity';
-import { SocialWorkSubstanceUse } from 'src/SUBSTANCE_USE/substance_use.entity';
+import { ConfigurationService } from '../config/config.service';
+import { Achievers } from '../achievers/achievers.entity';
+import { Team } from '../team/team.entity';
+import { User } from '../user/user.entity';
+import { Program } from '../program/program.entity';
+import { Blog } from '../blog/blog.entity';
+import { BlogCategories } from '../blog_categories/blog_categories.entity';
+import { Contacts } from '../contacts/contacts.entity';
+import { Gallery } from '../gallery/gallery.entity';
+import { GalleryTitle } from '../gallery_title/gallery_title.entity';
+import { Journey } from '../journey/journey.entity';
+import { Media } from '../media/media.entity';
+import { SuccessStories } from '../success_stories/success_stories.entity';
+import { Result } from 'src/result/result.entity';
+import { ResultSummary } from 'src/result_summary/result_summary.entity';
 
 export const databaseProvider = {
   provide: 'SEQUELIZE',
   useFactory: async (configService: ConfigurationService) => {
     const sequelize = new Sequelize(configService.sequelizeOrmConfig);
     sequelize.addModels([
-      SubstanceType,
-      SocialWorkSubstanceUse,
-
-      // ----------------------------------------
-
-      Users,
-      TokenManagement,
-      Role,
-      Permission,
-      RolePermission,
+      User,
+      Achievers,
+      Team,
+      User,
+      Program,
+      Blog,
+      BlogCategories,
+      Contacts,
+      Gallery,
+      GalleryTitle,
+      Journey,
+      Media,
+      Result,
+      ResultSummary,
+      SuccessStories,
     ]);
     await sequelize.sync();
     return sequelize;

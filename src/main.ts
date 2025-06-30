@@ -5,7 +5,7 @@ import * as dotenv from 'dotenv';
 import * as path from 'path';
 import { setupSwagger } from './swagger';
 import { JwtService } from '@nestjs/jwt';
-import { AuthGuard } from './SHARED/guards/auth.guard';
+import { AuthGuard } from './shared/guards/auth.guard';
 import { CACHE_MANAGER } from '@nestjs/cache-manager';
 
 async function bootstrap() {

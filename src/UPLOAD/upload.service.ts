@@ -9,9 +9,9 @@ import * as AWS from 'aws-sdk';
 import { ImageResponseDto } from './dto/response.dto';
 import path from 'path';
 import core from 'file-type/core';
-import { DataResponseDto } from '../SHARED/dto/data-response.dto';
-import { ConfigurationService } from 'src/CONFIG/config.service';
-import generateRandom from '../SHARED/helpers/generate.random';
+import { DataResponseDto } from '../shared/dto/data-response.dto';
+import { ConfigurationService } from 'src/config/config.service';
+import generateRandom from '../shared/helpers/generate.random';
 
 @Injectable()
 export class UploadService {
@@ -25,7 +25,7 @@ export class UploadService {
     @Inject('getMime')
     private getFormat: (
       file: Express.Multer.File,
-    ) => Promise<core.FileTypeResult>
+    ) => Promise<core.FileTypeResult>,
   ) {
     this.s3 = new AWS.S3(configService.s3Config);
   }
@@ -49,10 +49,14 @@ export class UploadService {
       };
 
       const data = await this.s3.upload(params).promise();
-      return new DataResponseDto(data?.Location, true, 'Image uploaded successfully');
+      return new DataResponseDto(
+        data?.Location,
+        true,
+        'Image uploaded successfully',
+      );
     } catch (err) {
       if (err instanceof HttpException) throw err;
-      console.log("errerrerrerr",err.message)
+      console.log('errerrerrerr', err.message);
       throw new InternalServerErrorException('Failed to upload image');
     }
   }
@@ -71,7 +75,11 @@ export class UploadService {
       };
 
       const data = await this.s3.upload(params).promise();
-      return new DataResponseDto(new ImageResponseDto(data), true, 'File uploaded successfully');
+      return new DataResponseDto(
+        new ImageResponseDto(data),
+        true,
+        'File uploaded successfully',
+      );
     } catch (err) {
       if (err instanceof HttpException) throw err;
       throw new InternalServerErrorException('Failed to upload file');
@@ -80,8 +88,10 @@ export class UploadService {
 
   async deleteFromS3(url: string) {
     try {
-      const key = url?.split(`${process.env.S3_BUCKET_NAME}.s3.${process.env.S3_REGION}.amazonaws.com/`)[1];
-      
+      const key = url?.split(
+        `${process.env.S3_BUCKET_NAME}.s3.${process.env.S3_REGION}.amazonaws.com/`,
+      )[1];
+
       const params = {
         Bucket: process.env.S3_BUCKET_NAME,
         Key: key,
