@@ -10,7 +10,7 @@ import { User } from './user.entity';
 import { CreateUserDto } from './dto/create.dto';
 import { QueryUserDto } from './dto/query.dto';
 import { UpdateUserDto } from './dto/update.dto';
-import { DataResponseDto } from 'src/shared/dto/data-response.dto';
+import { DataResponseDto } from '../shared/dto/data-response.dto';
 
 @Injectable()
 export class UserService {
