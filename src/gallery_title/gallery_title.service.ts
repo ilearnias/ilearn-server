@@ -11,14 +11,14 @@ import { GalleryTitle } from './gallery_title.entity';
 import { CreateGalleryTitleDto } from './dto/create.dto';
 import { QueryGalleryTitleDto } from './dto/query.dto';
 import { UpdateGalleryTitleDto } from './dto/update.dto';
-import { DataResponseDto } from 'src/shared/dto/data-response.dto';
+import { DataResponseDto } from '../shared/dto/data-response.dto';
 
 @Injectable()
 export class GalleryTitleService {
   constructor(
     @Inject('GalleryTitleProvider')
     private repository: typeof GalleryTitle,
-  ) {}
+  ) { }
 
   async create(createDto: CreateGalleryTitleDto): Promise<DataResponseDto> {
     try {

@@ -1,7 +1,6 @@
 import {
   Injectable,
   NotFoundException,
-  ConflictException,
   HttpException,
   InternalServerErrorException,
 } from '@nestjs/common';
@@ -12,7 +11,7 @@ import { Achievers } from './achievers.entity';
 import { CreateAchieversDto } from './dto/create.dto';
 import { QueryAchieversDto } from './dto/query.dto';
 import { UpdateAchieversDto } from './dto/update.dto';
-import { DataResponseDto } from 'src/shared/dto/data-response.dto';
+import { DataResponseDto } from '../shared/dto/data-response.dto';
 
 /**
  * Service responsible for handling achievers operations
@@ -23,7 +22,7 @@ export class AchieversService {
   constructor(
     @Inject('AchieversProvider')
     private repository: typeof Achievers,
-  ) {}
+  ) { }
 
   /**
    * Creates a new achiever

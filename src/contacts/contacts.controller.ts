@@ -22,13 +22,13 @@ import { ContactsService } from './contacts.service';
 import { CreateContactsDto } from './dto/create.dto';
 import { QueryContactsDto } from './dto/query.dto';
 import { UpdateContactsDto } from './dto/update.dto';
-import { DataResponseDto } from 'src/shared/dto/data-response.dto';
+import { DataResponseDto } from '../shared/dto/data-response.dto';
 
 @ApiTags('Contacts')
 @Controller('contacts')
 @ApiBearerAuth()
 export class ContactsController {
-  constructor(private readonly contactsService: ContactsService) {}
+  constructor(private readonly contactsService: ContactsService) { }
 
   @Post()
   @HttpCode(HttpStatus.CREATED)

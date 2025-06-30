@@ -22,13 +22,13 @@ import { BlogService } from './blog.service';
 import { CreateBlogDto } from './dto/create.dto';
 import { QueryBlogDto } from './dto/query.dto';
 import { UpdateBlogDto } from './dto/update.dto';
-import { DataResponseDto } from 'src/shared/dto/data-response.dto';
+import { DataResponseDto } from '../shared/dto/data-response.dto';
 
 @ApiTags('Blog')
 @Controller('blog')
 @ApiBearerAuth()
 export class BlogController {
-  constructor(private readonly blogService: BlogService) {}
+  constructor(private readonly blogService: BlogService) { }
 
   @Post()
   @HttpCode(HttpStatus.CREATED)

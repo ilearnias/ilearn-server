@@ -22,7 +22,7 @@ import { GalleryTitleService } from './gallery_title.service';
 import { CreateGalleryTitleDto } from './dto/create.dto';
 import { QueryGalleryTitleDto } from './dto/query.dto';
 import { UpdateGalleryTitleDto } from './dto/update.dto';
-import { DataResponseDto } from 'src/shared/dto/data-response.dto';
+import { DataResponseDto } from '../shared/dto/data-response.dto';
 
 @ApiTags('Gallery Title')
 @Controller('gallery-title')

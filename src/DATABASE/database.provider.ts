@@ -1,5 +1,4 @@
 import { Sequelize } from 'sequelize-typescript';
-
 import { ConfigurationService } from '../config/config.service';
 import { Achievers } from '../achievers/achievers.entity';
 import { Team } from '../team/team.entity';
@@ -13,8 +12,8 @@ import { GalleryTitle } from '../gallery_title/gallery_title.entity';
 import { Journey } from '../journey/journey.entity';
 import { Media } from '../media/media.entity';
 import { SuccessStories } from '../success_stories/success_stories.entity';
-import { Result } from 'src/result/result.entity';
-import { ResultSummary } from 'src/result_summary/result_summary.entity';
+import { Result } from '../result/result.entity';
+import { ResultSummary } from '../result_summary/result_summary.entity';
 
 export const databaseProvider = {
   provide: 'SEQUELIZE',

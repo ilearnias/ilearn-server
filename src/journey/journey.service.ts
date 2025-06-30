@@ -11,7 +11,7 @@ import { Journey } from './journey.entity';
 import { CreateJourneyDto } from './dto/create.dto';
 import { QueryJourneyDto } from './dto/query.dto';
 import { UpdateJourneyDto } from './dto/update.dto';
-import { DataResponseDto } from 'src/shared/dto/data-response.dto';
+import { DataResponseDto } from '../shared/dto/data-response.dto';
 
 /**
  * Service responsible for handling journey operations
@@ -22,7 +22,7 @@ export class JourneyService {
   constructor(
     @Inject('JourneyProvider')
     private repository: typeof Journey,
-  ) {}
+  ) { }
 
   /**
    * Creates a new journey entry

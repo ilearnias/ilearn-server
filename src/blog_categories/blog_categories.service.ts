@@ -11,14 +11,14 @@ import { BlogCategories } from './blog_categories.entity';
 import { CreateBlogCategoriesDto } from './dto/create.dto';
 import { QueryBlogCategoriesDto } from './dto/query.dto';
 import { UpdateBlogCategoriesDto } from './dto/update.dto';
-import { DataResponseDto } from 'src/shared/dto/data-response.dto';
+import { DataResponseDto } from '../shared/dto/data-response.dto';
 
 @Injectable()
 export class BlogCategoriesService {
   constructor(
     @Inject('BlogCategoriesProvider')
     private repository: typeof BlogCategories,
-  ) {}
+  ) { }
 
   async create(createDto: CreateBlogCategoriesDto): Promise<DataResponseDto> {
     try {

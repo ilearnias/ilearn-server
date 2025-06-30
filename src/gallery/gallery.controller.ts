@@ -22,13 +22,13 @@ import { GalleryService } from './gallery.service';
 import { CreateGalleryDto } from './dto/create.dto';
 import { QueryGalleryDto } from './dto/query.dto';
 import { UpdateGalleryDto } from './dto/update.dto';
-import { DataResponseDto } from 'src/shared/dto/data-response.dto';
+import { DataResponseDto } from '../shared/dto/data-response.dto';
 
 @ApiTags('Gallery')
 @Controller('gallery')
 @ApiBearerAuth()
 export class GalleryController {
-  constructor(private readonly galleryService: GalleryService) {}
+  constructor(private readonly galleryService: GalleryService) { }
 
   @Post()
   @HttpCode(HttpStatus.CREATED)

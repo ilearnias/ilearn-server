@@ -11,14 +11,14 @@ import { Contacts } from './contacts.entity';
 import { CreateContactsDto } from './dto/create.dto';
 import { QueryContactsDto } from './dto/query.dto';
 import { UpdateContactsDto } from './dto/update.dto';
-import { DataResponseDto } from 'src/shared/dto/data-response.dto';
+import { DataResponseDto } from '../shared/dto/data-response.dto';
 
 @Injectable()
 export class ContactsService {
   constructor(
     @Inject('ContactsProvider')
     private repository: typeof Contacts,
-  ) {}
+  ) { }
 
   async create(createDto: CreateContactsDto): Promise<DataResponseDto> {
     try {

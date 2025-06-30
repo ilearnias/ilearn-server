@@ -12,7 +12,7 @@ import { GalleryTitle } from '../gallery_title/gallery_title.entity';
 import { CreateGalleryDto } from './dto/create.dto';
 import { QueryGalleryDto } from './dto/query.dto';
 import { UpdateGalleryDto } from './dto/update.dto';
-import { DataResponseDto } from 'src/shared/dto/data-response.dto';
+import { DataResponseDto } from '../shared/dto/data-response.dto';
 
 @Injectable()
 export class GalleryService {

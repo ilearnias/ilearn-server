@@ -7,7 +7,7 @@ import {
   ForeignKey,
   BelongsTo,
 } from 'sequelize-typescript';
-import { User } from 'src/user/user.entity';
+import { User } from '../../user/user.entity';
 
 @Table({ tableName: 'token_management', timestamps: false })
 export class TokenManagement extends Model<TokenManagement> {

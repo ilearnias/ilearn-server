@@ -22,7 +22,7 @@ import { JourneyService } from './journey.service';
 import { CreateJourneyDto } from './dto/create.dto';
 import { QueryJourneyDto } from './dto/query.dto';
 import { UpdateJourneyDto } from './dto/update.dto';
-import { DataResponseDto } from 'src/shared/dto/data-response.dto';
+import { DataResponseDto } from '../shared/dto/data-response.dto';
 
 /**
  * Controller for managing journey entries
@@ -32,7 +32,7 @@ import { DataResponseDto } from 'src/shared/dto/data-response.dto';
 @Controller('journey')
 @ApiBearerAuth()
 export class JourneyController {
-  constructor(private readonly journeyService: JourneyService) {}
+  constructor(private readonly journeyService: JourneyService) { }
 
   /**
    * Create a new journey entry
