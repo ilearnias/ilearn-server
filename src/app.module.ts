@@ -1,4 +1,4 @@
-// import { CacheModule } from '@nestjs/cache-manager';
+import { CacheModule } from '@nestjs/cache-manager';
 import { Module } from '@nestjs/common';
 import { ConfigurationModule } from './config/config.module';
 import { DatabaseModule } from './database/database.module';
@@ -17,14 +17,15 @@ import { ContactsModule } from './contacts/contacts.module';
 import { ResultSummaryModule } from './result_summary/result_summary.module';
 import { SharedAuthModule } from './shared/shared-auth.module';
 import { AuthModule } from './auth/auth.module';
+import { NestJwtModule } from './auth/strategy/jwt_access.strategy';
 
 @Module({
   imports: [
     DatabaseModule,
     ConfigurationModule,
     SharedAuthModule,
-    // NestJwtModule,
-    // CacheModule.register({ isGlobal: true }),
+    NestJwtModule,
+    CacheModule.register({ isGlobal: true }),
 
     AuthModule,
     UserModule,
