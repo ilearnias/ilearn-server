@@ -16,6 +16,27 @@
     "noImplicitAny": false,
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
-    "noFallthroughCasesInSwitch": false
+    "noFallthroughCasesInSwitch": false,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "allowJs": true,
+    "resolveJsonModule": true,
+    "paths": {
+      "@/*": ["src/*"],
+      "@/shared/*": ["src/shared/*"],
+      "@/user/*": ["src/user/*"],
+      "@/auth/*": ["src/auth/*"],
+      "@/blog/*": ["src/blog/*"],
+      "@/contacts/*": ["src/contacts/*"],
+      "@/gallery/*": ["src/gallery/*"],
+      "@/journey/*": ["src/journey/*"],
+      "@/media/*": ["src/media/*"],
+      "@/program/*": ["src/program/*"],
+      "@/result/*": ["src/result/*"],
+      "@/team/*": ["src/team/*"],
+      "@/upload/*": ["src/upload/*"],
+      "@/config/*": ["src/config/*"],
+      "@/database/*": ["src/database/*"]
+    }
   }
 }

@@ -19,10 +19,9 @@ import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create.dto';
 import { UpdateUserDto } from './dto/update.dto';
 import { QueryUserDto } from './dto/query.dto';
-import { AuthGuard } from '../shared/guards/auth.guard';
-
-import { DataResponseDto } from '../shared/dto/data-response.dto';
-import { Public } from '../shared/decorators/public.decorator';
+import { AuthGuard } from '@/shared/guards/auth.guard';
+import { DataResponseDto } from '@/shared/dto/data-response.dto';
+import { Public } from '@/shared/decorators/public.decorator';
 
 @ApiTags('User')
 @Controller('user')
