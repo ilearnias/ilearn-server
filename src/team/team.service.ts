@@ -11,14 +11,14 @@ import { Team } from './team.entity';
 import { CreateTeamDto } from './dto/create.dto';
 import { QueryTeamDto } from './dto/query.dto';
 import { UpdateTeamDto } from './dto/update.dto';
-import { DataResponseDto } from '../shared/dto/data-response.dto';
+import { DataResponseDto } from '@/shared/dto/data-response.dto';
 
 @Injectable()
 export class TeamService {
   constructor(
     @Inject('TeamProvider')
     private repository: typeof Team,
-  ) { }
+  ) {}
 
   async create(createTeamDto: CreateTeamDto): Promise<DataResponseDto> {
     try {

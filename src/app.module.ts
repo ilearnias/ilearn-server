@@ -1,4 +1,4 @@
-import { CacheModule } from '@nestjs/cache-manager';
+// import { CacheModule } from '@nestjs/cache-manager';
 import { Module } from '@nestjs/common';
 import { ConfigurationModule } from './config/config.module';
 import { DatabaseModule } from './database/database.module';
@@ -24,7 +24,7 @@ import { AuthModule } from './auth/auth.module';
     ConfigurationModule,
     SharedAuthModule,
     // NestJwtModule,
-    CacheModule.register({ isGlobal: true }),
+    // CacheModule.register({ isGlobal: true }),
 
     AuthModule,
     UserModule,

@@ -11,14 +11,14 @@ import { ResultSummary } from './result_summary.entity';
 import { CreateResultSummaryDto } from './dto/create.dto';
 import { QueryResultSummaryDto } from './dto/query.dto';
 import { UpdateResultSummaryDto } from './dto/update.dto';
-import { DataResponseDto } from '../shared/dto/data-response.dto';
+import { DataResponseDto } from '@/shared/dto/data-response.dto';
 
 @Injectable()
 export class ResultSummaryService {
   constructor(
     @Inject('ResultSummaryProvider')
     private repository: typeof ResultSummary,
-  ) { }
+  ) {}
 
   async create(
     createResultSummaryDto: CreateResultSummaryDto,

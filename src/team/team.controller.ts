@@ -20,15 +20,15 @@ import { CreateTeamDto } from './dto/create.dto';
 import { UpdateTeamDto } from './dto/update.dto';
 import { QueryTeamDto } from './dto/query.dto';
 import { Team } from './team.entity';
-import { DataResponseDto } from '../shared/dto/data-response.dto';
-import { AuthGuard } from '../shared/guards/auth.guard';
-import { Public } from '../shared/decorators/public.decorator';
+import { DataResponseDto } from '@/shared/dto/data-response.dto';
+import { AuthGuard } from '@/shared/guards/auth.guard';
+import { Public } from '@/shared/decorators/public.decorator';
 
 @ApiTags('Team')
 @Controller('admin/team')
 @UseGuards(AuthGuard)
 export class TeamController {
-  constructor(private readonly teamService: TeamService) { }
+  constructor(private readonly teamService: TeamService) {}
 
   @Post()
   @ApiBearerAuth()
@@ -123,4 +123,3 @@ export class TeamController {
     return this.teamService.restore(id);
   }
 }
-

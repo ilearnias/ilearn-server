@@ -6,13 +6,15 @@ import {
   Inject,
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import * as bcrypt from 'bcrypt';
+import { CACHE_MANAGER } from '@nestjs/cache-manager';
+import type { Cache } from 'cache-manager';
+import bcrypt from 'bcrypt';
 import { Op } from 'sequelize';
 
 import { User } from '../user/user.entity';
 import { LoginDto } from './dto/login.dto';
 import { RegisterDto } from './dto/register.dto';
-import { DataResponseDto } from '../shared/dto/data-response.dto';
+import { DataResponseDto } from '@/shared/dto/data-response.dto';
 
 @Injectable()
 export class AuthService {
