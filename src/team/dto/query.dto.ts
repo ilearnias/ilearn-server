@@ -1,4 +1,4 @@
-import { IsOptional, IsString, IsBoolean } from 'class-validator';
+import { IsOptional, IsString, IsBoolean, IsNumber } from 'class-validator';
 import { ApiPropertyOptional } from '@nestjs/swagger';
 import { PageOptionsDto } from '../../shared/dto/page-option.dto';
 
@@ -7,6 +7,16 @@ export class QueryTeamDto extends PageOptionsDto {
   @IsOptional()
   @IsString()
   name?: string;
+
+  @ApiPropertyOptional({ description: 'Limit' })
+  @IsOptional()
+  @IsNumber()
+  limit?: number;
+
+  @ApiPropertyOptional({ description: 'Page number' })
+  @IsOptional()
+  @IsNumber()
+  page?: number;
 
   @ApiPropertyOptional({ description: 'Search by designation' })
   @IsOptional()

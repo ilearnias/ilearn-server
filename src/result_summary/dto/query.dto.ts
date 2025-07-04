@@ -23,6 +23,16 @@ export class QueryResultSummaryDto extends PageOptionsDto {
   @IsNumber()
   minPassPercentage?: number;
 
+  @ApiPropertyOptional({ description: 'Limit' })
+  @IsOptional()
+  @IsNumber()
+  limit?: number;
+
+  @ApiPropertyOptional({ description: 'Page number' })
+  @IsOptional()
+  @IsNumber()
+  page?: number;
+
   @ApiPropertyOptional({ description: 'Filter by maximum pass percentage' })
   @IsOptional()
   @IsNumber()

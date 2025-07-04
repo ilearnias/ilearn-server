@@ -18,7 +18,7 @@ export class TeamService {
   constructor(
     @Inject('TeamProvider')
     private repository: typeof Team,
-  ) {}
+  ) { }
 
   async create(createTeamDto: CreateTeamDto): Promise<DataResponseDto> {
     try {

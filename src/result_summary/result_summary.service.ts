@@ -18,7 +18,7 @@ export class ResultSummaryService {
   constructor(
     @Inject('ResultSummaryProvider')
     private repository: typeof ResultSummary,
-  ) {}
+  ) { }
 
   async create(
     createResultSummaryDto: CreateResultSummaryDto,
