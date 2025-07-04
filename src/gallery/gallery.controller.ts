@@ -23,14 +23,16 @@ import { CreateGalleryDto } from './dto/create.dto';
 import { QueryGalleryDto } from './dto/query.dto';
 import { UpdateGalleryDto } from './dto/update.dto';
 import { DataResponseDto } from '../shared/dto/data-response.dto';
+import { Public } from 'src/shared/decorators/public.decorator';
 
 @ApiTags('Gallery')
-@Controller('gallery')
+@Controller('admin/gallery/images')
 @ApiBearerAuth()
 export class GalleryController {
   constructor(private readonly galleryService: GalleryService) { }
 
   @Post()
+  @Public()
   @HttpCode(HttpStatus.CREATED)
   @ApiOperation({ summary: 'Create a new gallery item' })
   @ApiResponse({
@@ -65,6 +67,7 @@ export class GalleryController {
   }
 
   @Patch(':id')
+  @Public()
   @ApiOperation({ summary: 'Update gallery item' })
   @ApiParam({ name: 'id', type: 'string', description: 'Gallery item ID' })
   @ApiResponse({
@@ -80,6 +83,7 @@ export class GalleryController {
   }
 
   @Delete(':id')
+  @Public()
   @HttpCode(HttpStatus.NO_CONTENT)
   @ApiOperation({ summary: 'Delete gallery item' })
   @ApiParam({ name: 'id', type: 'string', description: 'Gallery item ID' })

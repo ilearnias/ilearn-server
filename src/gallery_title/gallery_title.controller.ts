@@ -23,14 +23,16 @@ import { CreateGalleryTitleDto } from './dto/create.dto';
 import { QueryGalleryTitleDto } from './dto/query.dto';
 import { UpdateGalleryTitleDto } from './dto/update.dto';
 import { DataResponseDto } from '../shared/dto/data-response.dto';
+import { Public } from 'src/shared/decorators/public.decorator';
 
 @ApiTags('Gallery Title')
-@Controller('gallery-title')
+@Controller('admin/gallery/titles')
 @ApiBearerAuth()
 export class GalleryTitleController {
   constructor(private readonly galleryTitleService: GalleryTitleService) {}
 
   @Post()
+  @Public()
   @HttpCode(HttpStatus.CREATED)
   @ApiOperation({ summary: 'Create a new gallery title' })
   @ApiResponse({
@@ -69,6 +71,7 @@ export class GalleryTitleController {
   }
 
   @Patch(':id')
+  @Public()
   @ApiOperation({ summary: 'Update gallery title' })
   @ApiParam({ name: 'id', type: 'string', description: 'Gallery title ID' })
   @ApiResponse({
@@ -84,7 +87,8 @@ export class GalleryTitleController {
   }
 
   @Delete(':id')
-  @HttpCode(HttpStatus.NO_CONTENT)
+  @Public()
+  
   @ApiOperation({ summary: 'Delete gallery title' })
   @ApiParam({ name: 'id', type: 'string', description: 'Gallery title ID' })
   @ApiResponse({

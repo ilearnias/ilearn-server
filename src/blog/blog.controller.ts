@@ -75,7 +75,6 @@ export class BlogController {
 
   @Delete(':id')
   @Public()
-  @HttpCode(HttpStatus.NO_CONTENT)
   @ApiOperation({ summary: 'Delete blog' })
   @ApiParam({ name: 'id', type: 'string', description: 'Blog ID' })
   @ApiResponse({ status: 204, description: 'Blog deleted successfully' })

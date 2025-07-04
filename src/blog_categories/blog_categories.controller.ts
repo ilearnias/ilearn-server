@@ -88,7 +88,6 @@ export class BlogCategoriesController {
 
   @Delete(':id')
   @Public()
-  @HttpCode(HttpStatus.NO_CONTENT)
   @ApiOperation({ summary: 'Delete blog category' })
   @ApiParam({ name: 'id', type: 'string', description: 'Blog category ID' })
   @ApiResponse({
