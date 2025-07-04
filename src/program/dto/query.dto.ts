@@ -1,48 +1,82 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { IsString, IsOptional, IsEnum, IsNumber, Min, Max } from 'class-validator';
 import { Type } from 'class-transformer';
-import { IsInt, IsOptional, IsString, Min, IsBoolean } from 'class-validator';
+
+enum ProgramStatus {
+  ACTIVE = 'active',
+  INACTIVE = 'inactive',
+  UPCOMING = 'upcoming',
+}
 
 export class QueryProgramDto {
   @ApiProperty({
-    description: 'Page number for pagination',
+    description: 'Search by title',
     required: false,
-    default: 1,
-    type: Number,
+  })
+  @IsOptional()
+  @IsString()
+  title?: string;
+
+  @ApiProperty({
+    description: 'Filter by category',
+    required: false,
+  })
+  @IsOptional()
+  @IsString()
+  category?: string;
+
+  @ApiProperty({
+    description: 'Filter by status',
+    enum: ProgramStatus,
+    required: false,
+  })
+  @IsOptional()
+  @IsEnum(ProgramStatus)
+  status?: ProgramStatus;
+
+  @ApiProperty({
+    description: 'Filter by minimum price',
+    required: false,
   })
   @IsOptional()
   @Type(() => Number)
-  @IsInt()
+  @IsNumber()
+  @Min(0)
+  minPrice?: number;
+
+  @ApiProperty({
+    description: 'Filter by maximum price',
+    required: false,
+  })
+  @IsOptional()
+  @Type(() => Number)
+  @IsNumber()
+  @Min(0)
+  maxPrice?: number;
+
+  @ApiProperty({
+    description: 'Page number',
+    minimum: 1,
+    default: 1,
+    required: false,
+  })
+  @IsOptional()
+  @Type(() => Number)
+  @IsNumber()
   @Min(1)
   page?: number = 1;
 
   @ApiProperty({
-    description: 'Number of items per page',
-    required: false,
+    description: 'Items per page',
+    minimum: 1,
+    maximum: 50,
     default: 10,
-    type: Number,
+    required: false,
   })
   @IsOptional()
   @Type(() => Number)
-  @IsInt()
+  @IsNumber()
   @Min(1)
+  @Max(50)
   limit?: number = 10;
-
-  @ApiProperty({
-    description: 'Search term for filtering programs',
-    required: false,
-    type: String,
-  })
-  @IsOptional()
-  @IsString()
-  search?: string;
-
-  @ApiProperty({
-    description: 'Filter by active status',
-    required: false,
-    type: Boolean,
-  })
-  @IsOptional()
-  @Type(() => Boolean)
-  @IsBoolean()
-  isActive?: boolean;
 }

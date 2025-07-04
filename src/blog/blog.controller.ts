@@ -23,14 +23,16 @@ import { CreateBlogDto } from './dto/create.dto';
 import { QueryBlogDto } from './dto/query.dto';
 import { UpdateBlogDto } from './dto/update.dto';
 import { DataResponseDto } from '../shared/dto/data-response.dto';
+import { Public } from 'src/shared/decorators/public.decorator'
 
 @ApiTags('Blog')
-@Controller('blog')
+@Controller('admin/blog/posts')
 @ApiBearerAuth()
 export class BlogController {
   constructor(private readonly blogService: BlogService) { }
 
   @Post()
+  @Public()
   @HttpCode(HttpStatus.CREATED)
   @ApiOperation({ summary: 'Create a new blog' })
   @ApiResponse({ status: 201, description: 'Blog created successfully' })
@@ -59,6 +61,7 @@ export class BlogController {
   }
 
   @Patch(':id')
+  @Public()
   @ApiOperation({ summary: 'Update blog' })
   @ApiParam({ name: 'id', type: 'string', description: 'Blog ID' })
   @ApiResponse({ status: 200, description: 'Blog updated successfully' })
@@ -71,6 +74,7 @@ export class BlogController {
   }
 
   @Delete(':id')
+  @Public()
   @HttpCode(HttpStatus.NO_CONTENT)
   @ApiOperation({ summary: 'Delete blog' })
   @ApiParam({ name: 'id', type: 'string', description: 'Blog ID' })

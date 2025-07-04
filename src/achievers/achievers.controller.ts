@@ -23,13 +23,16 @@ import { CreateAchieversDto } from './dto/create.dto';
 import { QueryAchieversDto } from './dto/query.dto';
 import { UpdateAchieversDto } from './dto/update.dto';
 import { DataResponseDto } from '../shared/dto/data-response.dto';
+import { Public } from 'src/shared/decorators/public.decorator';
+
+
 
 /**
  * Controller for managing achievers
  * Provides CRUD operations for achievers entity
  */
 @ApiTags('Achievers')
-@Controller('achievers')
+@Controller('/admin/achievers')
 @ApiBearerAuth()
 export class AchieversController {
   constructor(private readonly achieversService: AchieversService) { }
@@ -40,6 +43,7 @@ export class AchieversController {
    * @returns newly created achiever
    */
   @Post()
+  @Public()
   @HttpCode(HttpStatus.CREATED)
   @ApiOperation({ summary: 'Create a new achiever' })
   @ApiResponse({
@@ -92,6 +96,7 @@ export class AchieversController {
    * @returns updated achiever
    */
   @Patch(':id')
+  @Public()
   @ApiOperation({ summary: 'Update achiever' })
   @ApiParam({ name: 'id', type: 'string', description: 'Achiever ID' })
   @ApiResponse({
@@ -112,7 +117,7 @@ export class AchieversController {
    * @returns success response
    */
   @Delete(':id')
-  @HttpCode(HttpStatus.NO_CONTENT)
+  @Public()
   @ApiOperation({ summary: 'Delete achiever' })
   @ApiParam({ name: 'id', type: 'string', description: 'Achiever ID' })
   @ApiResponse({

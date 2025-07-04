@@ -23,14 +23,16 @@ import { CreateSuccessStoriesDto } from './dto/create.dto';
 import { QuerySuccessStoriesDto } from './dto/query.dto';
 import { UpdateSuccessStoriesDto } from './dto/update.dto';
 import { DataResponseDto } from 'src/shared/dto/data-response.dto';
+import { Public } from 'src/shared/decorators/public.decorator';
 
 @ApiTags('Success Stories')
-@Controller('success-stories')
+@Controller('admin/success-stories')
 @ApiBearerAuth()
 export class SuccessStoriesController {
   constructor(private readonly successStoriesService: SuccessStoriesService) {}
 
   @Post()
+  @Public()
   @HttpCode(HttpStatus.CREATED)
   @ApiOperation({ summary: 'Create a new success story' })
   @ApiResponse({
@@ -69,6 +71,7 @@ export class SuccessStoriesController {
   }
 
   @Patch(':id')
+  @Public()
   @ApiOperation({ summary: 'Update success story' })
   @ApiParam({ name: 'id', type: 'string', description: 'Success story ID' })
   @ApiResponse({
@@ -84,7 +87,7 @@ export class SuccessStoriesController {
   }
 
   @Delete(':id')
-  @HttpCode(HttpStatus.NO_CONTENT)
+  @Public()
   @ApiOperation({ summary: 'Delete success story' })
   @ApiParam({ name: 'id', type: 'string', description: 'Success story ID' })
   @ApiResponse({

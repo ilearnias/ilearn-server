@@ -25,7 +25,7 @@ import { AuthGuard } from '../shared/guards/auth.guard';
 import { Public } from '../shared/decorators/public.decorator';
 
 @ApiTags('Team')
-@Controller('team')
+@Controller('admin/team')
 @UseGuards(AuthGuard)
 export class TeamController {
   constructor(private readonly teamService: TeamService) { }
@@ -123,3 +123,4 @@ export class TeamController {
     return this.teamService.restore(id);
   }
 }
+

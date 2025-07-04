@@ -11,15 +11,40 @@ export class Program extends Model {
 
   @Column({
     type: DataType.STRING(255),
-    allowNull: true,
+    allowNull: false,
   })
   title: string;
 
   @Column({
-    type: DataType.TEXT,
-    allowNull: true,
+    type: DataType.STRING(100),
+    allowNull: false,
   })
-  subTitle: string;
+  category: string;
+
+  @Column({
+    type: DataType.STRING(50),
+    allowNull: false,
+  })
+  duration: string;
+
+  @Column({
+    type: DataType.ENUM('Active', 'Inactive', 'Upcoming'),
+    defaultValue: 'Active',
+    allowNull: false,
+  })
+  status: string;
+
+  @Column({
+    type: DataType.INTEGER,
+    defaultValue: 0,
+  })
+  enrollments: number;
+
+  @Column({
+    type: DataType.DECIMAL(10, 2),
+    allowNull: false,
+  })
+  price: number;
 
   @Column({
     type: DataType.TEXT,

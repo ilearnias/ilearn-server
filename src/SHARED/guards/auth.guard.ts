@@ -72,10 +72,9 @@ export class AuthGuard implements CanActivate {
       context.getHandler(),
     );
 
+    // If no permissions are required, allow the request
     if (!requiredPermissions || requiredPermissions.length <= 0) {
-      throw new ForbiddenException(
-        'You do not have the required permissions for this action.',
-      );
+      return true;
     }
 
     // If permissions are required for this route, check if user has them

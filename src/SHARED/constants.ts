@@ -6,6 +6,9 @@ export const PERMISSIONS = {
     // User permissions
     MANAGE_USERS: 'manage_users',
     VIEW_USERS: 'view_users',
+    CREATE_USER: 'create_user',
+    EDIT_USER: 'edit_user',
+    DELETE_USER: 'delete_user',
     
     // Lead permissions
     CREATE_LEAD: 'create_lead',
