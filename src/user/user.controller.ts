@@ -19,7 +19,6 @@ import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create.dto';
 import { UpdateUserDto } from './dto/update.dto';
 import { QueryUserDto } from './dto/query.dto';
-import { User } from './user.entity';
 import { DataResponseDto } from '../shared/dto/data-response.dto';
 import { AuthGuard } from '../shared/guards/auth.guard';
 import { Public } from '../shared/decorators/public.decorator';
@@ -28,7 +27,7 @@ import { Public } from '../shared/decorators/public.decorator';
 @Controller('user')
 @UseGuards(AuthGuard)
 export class UserController {
-  constructor(private readonly userService: UserService) {}
+  constructor(private readonly userService: UserService) { }
 
   @Post()
   @ApiBearerAuth()

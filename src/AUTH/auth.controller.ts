@@ -1,4 +1,4 @@
- import {
+import {
   Controller,
   Post,
   Body,
@@ -15,13 +15,13 @@ import {
 import { AuthService } from './auth.service';
 import { LoginDto } from './dto/login.dto';
 import { RegisterDto } from './dto/register.dto';
-import { DataResponseDto } from '../shared/dto/data-response.dto';
 import { Public } from '../shared/decorators/public.decorator';
+import { DataResponseDto } from '../shared/dto/data-response.dto';
 
 @ApiTags('Auth')
 @Controller('auth')
 export class AuthController {
-  constructor(private readonly authService: AuthService) {}
+  constructor(private readonly authService: AuthService) { }
 
   @Post('login')
   @Public()
