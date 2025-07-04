@@ -23,7 +23,7 @@ export class PageOptionsDto {
   @IsOptional()
   @MaxLength(50)
   searchField?: string;
-  
+
   @ApiPropertyOptional({ enum: Order, default: Order.ASC })
   @IsEnum(Order)
   @IsOptional()

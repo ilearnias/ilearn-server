@@ -1,11 +1,4 @@
-import {
-  Controller,
-  Post,
-  Body,
-  UseGuards,
-  Get,
-  Headers,
-} from '@nestjs/common';
+import { Controller, Post, Body, Get, Headers } from '@nestjs/common';
 import {
   ApiTags,
   ApiOperation,
@@ -21,7 +14,7 @@ import { DataResponseDto } from '../shared/dto/data-response.dto';
 @ApiTags('Auth')
 @Controller('auth')
 export class AuthController {
-  constructor(private readonly authService: AuthService) { }
+  constructor(private readonly authService: AuthService) {}
 
   @Post('login')
   @Public()

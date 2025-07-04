@@ -174,7 +174,8 @@ export class AuthService {
     try {
       const payload = this.jwtService.verify(token);
       return payload;
-    } catch (error) {
+    } catch (error: any) {
+      console.log(error);
       throw new UnauthorizedException('Invalid token');
     }
   }

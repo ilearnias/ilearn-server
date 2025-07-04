@@ -1,13 +1,11 @@
 import { CacheModule } from '@nestjs/cache-manager';
 import { Module } from '@nestjs/common';
-// import { NestJwtModule } from './AUTHH/strategy/jwt_access.strategy';
 import { ConfigurationModule } from './config/config.module';
 import { DatabaseModule } from './database/database.module';
 import { UploadModule } from './upload/upload.module';
 import { AchieversModule } from './achievers/achievers.module';
 import { TeamModule } from './team/team.module';
 import { UserModule } from './user/user.module';
-import { AuthModule } from './auth/auth.module';
 import { GalleryTitleModule } from './gallery_title/gallery_title.module';
 import { GalleryModule } from './gallery/gallery.module';
 import { SuccessStoriesModule } from './success_stories/success_stories.module';
@@ -18,6 +16,7 @@ import { ProgramModule } from './program/program.module';
 import { ContactsModule } from './contacts/contacts.module';
 import { ResultSummaryModule } from './result_summary/result_summary.module';
 import { SharedAuthModule } from './shared/shared-auth.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
