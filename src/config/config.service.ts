@@ -3,6 +3,7 @@ import { Dialect } from 'sequelize';
 @Injectable()
 export class ConfigurationService {
   get sequelizeOrmConfig() {
+    console.log('process.env.DATABASE_HOST',  process.env.S3_ACCESS_KEY_ID);
     return {
       dialect: process.env.DATABASE as Dialect,
       host: process.env.DATABASE_HOST,

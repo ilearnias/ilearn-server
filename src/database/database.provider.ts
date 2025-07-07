@@ -8,7 +8,7 @@ import { Blog } from '../blog/blog.entity';
 import { BlogCategories } from '../blog_categories/blog_categories.entity';
 import { Contacts } from '../contacts/contacts.entity';
 import { Gallery } from '../gallery/gallery.entity';
-import { GalleryTitle } from '../gallery_title/gallery_title.entity';
+// import { GalleryTitle } from '../gallery_title/gallery_title.entity';
 import { Journey } from '../journey/journey.entity';
 import { Media } from '../media/media.entity';
 import { SuccessStories } from '../success_stories/success_stories.entity';
@@ -29,14 +29,14 @@ export const databaseProvider = {
       BlogCategories,
       Contacts,
       Gallery,
-      GalleryTitle,
+      // GalleryTitle,
       Journey,
       Media,
       Result,
       ResultSummary,
       SuccessStories,
     ]);
-    await sequelize.sync();
+    // await sequelize.sync();
     return sequelize;
   },
   inject: [ConfigurationService],

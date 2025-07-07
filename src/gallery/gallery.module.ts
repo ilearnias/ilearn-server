@@ -1,11 +1,12 @@
 import { Module } from '@nestjs/common';
 import { GalleryService } from './gallery.service';
-import { galleryProviders } from './gallery.provider';
 import { GalleryController } from './gallery.controller';
-import { GalleryTitleModule } from '../gallery_title/gallery_title.module';
+import { galleryProviders } from './gallery.provider';
+import { UploadModule } from '../UPLOAD/upload.module';
+import { ConfigurationModule } from '../CONFIG/config.module';
 
 @Module({
-  imports: [GalleryTitleModule],
+  imports: [UploadModule, ConfigurationModule],
   controllers: [GalleryController],
   providers: [GalleryService, ...galleryProviders],
   exports: [GalleryService],

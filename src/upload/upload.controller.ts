@@ -20,6 +20,7 @@ import {
 } from '@nestjs/swagger';
 import { DataResponseDto } from '../shared/dto/data-response.dto';
 import { UploadService } from './upload.service';
+import { Public } from '@/shared/decorators/public.decorator';
 
 class FileUploadDto {
   file: string;
@@ -27,6 +28,7 @@ class FileUploadDto {
 
 @Controller('upload')
 @ApiTags('upload')
+@Public()
 export class UploadController {
   constructor(private readonly uploadService: UploadService) {}
 
@@ -42,7 +44,7 @@ export class UploadController {
       type: 'object',
       properties: {
         file: {
-          type: 'string',
+          type: 'string',           
           format: 'binary',
           description: 'Image file to upload (JPEG, PNG, or WEBP)',
         },
@@ -79,7 +81,7 @@ export class UploadController {
   })
   @UseInterceptors(FileInterceptor('file'))
   async uploadImage(
-    @UploadedFiles(
+    @UploadedFile(
       new ParseFilePipe({
         validators: [
           new MaxFileSizeValidator({ maxSize: 1000 * 1000 * 3 }),

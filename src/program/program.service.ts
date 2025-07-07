@@ -129,23 +129,23 @@ export class ProgramService {
     }
   }
 
-  async remove(id: string): Promise<DataResponseDto> {
-    try {
-      const program = await this.repository.findByPk(id);
-  
-      if (!program) {
-        throw new NotFoundException(`Program with ID ${id} not found`);
+    async remove(id: string): Promise<DataResponseDto> {
+      try {
+        const program = await this.repository.findByPk(id);
+    
+        if (!program) {
+          throw new NotFoundException(`Program with ID ${id} not found`);
+        }
+    
+        await program.destroy({ force: true });
+    
+        return new DataResponseDto(null, true, 'Program deleted successfully');
+      } catch (error) {
+        console.log(error);
+        if (error instanceof HttpException) throw error;
+        throw new InternalServerErrorException('Failed to delete program');
       }
-  
-      await program.destroy({ force: true });
-  
-      return new DataResponseDto(null, true, 'Program deleted successfully');
-    } catch (error) {
-      console.log(error);
-      if (error instanceof HttpException) throw error;
-      throw new InternalServerErrorException('Failed to delete program');
     }
-  }
 
 
 }

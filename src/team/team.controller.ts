@@ -85,6 +85,7 @@ export class TeamController {
   }
 
   @Delete(':id')
+  @Public()
   @ApiBearerAuth()
   @ApiOperation({ summary: 'Delete a team member' })
   @ApiResponse({

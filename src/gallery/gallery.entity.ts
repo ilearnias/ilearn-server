@@ -1,14 +1,6 @@
-import {
-  Column,
-  Model,
-  Table,
-  DataType,
-  ForeignKey,
-  BelongsTo,
-} from 'sequelize-typescript';
-import { GalleryTitle } from '../gallery_title/gallery_title.entity';
+import { Column, Model, Table, DataType } from 'sequelize-typescript';
 
-@Table({ tableName: 'gallery', paranoid: true })
+@Table({ tableName: 'galleries', paranoid: true })
 export class Gallery extends Model {
   @Column({
     type: DataType.UUID,
@@ -17,30 +9,21 @@ export class Gallery extends Model {
   })
   id: string;
 
-  @ForeignKey(() => GalleryTitle)
-  @Column({
-    type: DataType.UUID,
-    allowNull: true,
-  })
-  titleId: string;
-
-  @BelongsTo(() => GalleryTitle)
-  title: GalleryTitle;
-
   @Column({
     type: DataType.STRING(255),
-    allowNull: true,
+    allowNull: false,
   })
-  tags: string;
+  title: string;
 
   @Column({
-    type: DataType.STRING(255),
-    allowNull: true,
+    type: DataType.ARRAY(DataType.STRING),
+    allowNull: false,
+    defaultValue: [],
   })
-  media: string;
+  images: string[];
 
   @Column({
-    type: DataType.FLOAT,
+    type: DataType.INTEGER,
     allowNull: true,
   })
   order: number;

@@ -6,7 +6,6 @@ import { UploadModule } from './upload/upload.module';
 import { AchieversModule } from './achievers/achievers.module';
 import { TeamModule } from './team/team.module';
 import { UserModule } from './user/user.module';
-import { GalleryTitleModule } from './gallery_title/gallery_title.module';
 import { GalleryModule } from './gallery/gallery.module';
 import { SuccessStoriesModule } from './success_stories/success_stories.module';
 import { BlogModule } from './blog/blog.module';
@@ -36,7 +35,6 @@ import { NestJwtModule } from './auth/strategy/jwt_access.strategy';
     SuccessStoriesModule,
     TeamModule,
     GalleryModule,
-    GalleryTitleModule,
     ContactsModule,
     BlogModule,
     BlogCategoriesModule,

@@ -40,6 +40,7 @@ export class UploadService {
       const resizedImg = await this.compressImage(file);
       const fileName = `${generateRandom(2)}${path.parse(file?.originalname)?.name}.${fileFormat?.ext}`;
 
+      console.log('fileName=========', process.env.S3_BUCKET_NAME);
       const params = {
         Bucket: process.env.S3_BUCKET_NAME,
         Key: `${process.env.S3_DIRECTORY}/${fileName}`,
@@ -55,6 +56,7 @@ export class UploadService {
         'Image uploaded successfully',
       );
     } catch (err) {
+      console.log('err', err);
       if (err instanceof HttpException) throw err;
       console.log('errerrerrerr', err.message);
       throw new InternalServerErrorException('Failed to upload image');

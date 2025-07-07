@@ -1,64 +1,15 @@
-import { ApiProperty } from '@nestjs/swagger';
-import { Type } from 'class-transformer';
-import {
-  IsInt,
-  IsOptional,
-  IsString,
-  Min,
-  IsBoolean,
-  IsUUID,
-} from 'class-validator';
+import { ApiPropertyOptional } from '@nestjs/swagger';
+import { IsString, IsOptional, IsBoolean } from 'class-validator';
+import { PageOptionsDto } from '../../shared/dto/page-option.dto';
 
-export class QueryGalleryDto {
-  @ApiProperty({
-    description: 'Page number for pagination',
-    required: false,
-    default: 1,
-    type: Number,
-  })
-  @IsOptional()
-  @Type(() => Number)
-  @IsInt()
-  @Min(1)
-  page?: number = 1;
-
-  @ApiProperty({
-    description: 'Number of items per page',
-    required: false,
-    default: 10,
-    type: Number,
-  })
-  @IsOptional()
-  @Type(() => Number)
-  @IsInt()
-  @Min(1)
-  limit?: number = 10;
-
-  @ApiProperty({
-    description: 'Search term for filtering gallery items',
-    required: false,
-    type: String,
-  })
+export class QueryGalleryDto extends PageOptionsDto {
+  @ApiPropertyOptional({ description: 'Search by title' })
   @IsOptional()
   @IsString()
-  search?: string;
+  title?: string;
 
-  @ApiProperty({
-    description: 'Filter by gallery title ID',
-    required: false,
-    type: String,
-  })
+  @ApiPropertyOptional({ description: 'Filter by active status' })
   @IsOptional()
-  @IsUUID()
-  titleId?: string;
-
-  @ApiProperty({
-    description: 'Filter by active status',
-    required: false,
-    type: Boolean,
-  })
-  @IsOptional()
-  @Type(() => Boolean)
   @IsBoolean()
   isActive?: boolean;
 }
