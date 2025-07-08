@@ -63,6 +63,7 @@ export class AchieversController {
    * @returns paginated list of achievers
    */
   @Get()
+  @Public()
   @ApiOperation({ summary: 'Get all achievers' })
   @ApiResponse({
     status: 200,
@@ -78,6 +79,7 @@ export class AchieversController {
    * @returns achiever details
    */
   @Get(':id')
+  @Public()
   @ApiOperation({ summary: 'Get achiever by id' })
   @ApiParam({ name: 'id', type: 'string', description: 'Achiever ID' })
   @ApiResponse({

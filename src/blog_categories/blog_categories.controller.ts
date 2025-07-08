@@ -47,6 +47,7 @@ export class BlogCategoriesController {
   }
 
   @Get()
+  @Public()
   @ApiOperation({ summary: 'Get all blog categories' })
   @ApiResponse({
     status: 200,
@@ -59,6 +60,7 @@ export class BlogCategoriesController {
   }
 
   @Get(':id')
+  @Public()
   @ApiOperation({ summary: 'Get blog category by id' })
   @ApiParam({ name: 'id', type: 'string', description: 'Blog category ID' })
   @ApiResponse({

@@ -43,6 +43,7 @@ export class ResultController {
   }
 
   @Get()
+  @Public()
   @ApiOperation({ summary: 'Get all results' })
   @ApiResponse({
     status: 200,
@@ -53,6 +54,7 @@ export class ResultController {
   }
 
   @Get(':id')
+  @Public()
   @ApiOperation({ summary: 'Get result by id' })
   @ApiParam({ name: 'id', type: 'string', description: 'Result ID' })
   @ApiResponse({ status: 200, description: 'Result retrieved successfully' })
@@ -76,7 +78,7 @@ export class ResultController {
 
   @Delete(':id')
   @Public()
-  
+
   @ApiOperation({ summary: 'Delete result' })
   @ApiParam({ name: 'id', type: 'string', description: 'Result ID' })
   @ApiResponse({ status: 204, description: 'Result deleted successfully' })

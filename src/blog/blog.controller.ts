@@ -42,6 +42,7 @@ export class BlogController {
   }
 
   @Get()
+  @Public()
   @ApiOperation({ summary: 'Get all blogs' })
   @ApiResponse({
     status: 200,
@@ -52,6 +53,7 @@ export class BlogController {
   }
 
   @Get(':id')
+  @Public()
   @ApiOperation({ summary: 'Get blog by id' })
   @ApiParam({ name: 'id', type: 'string', description: 'Blog ID' })
   @ApiResponse({ status: 200, description: 'Blog retrieved successfully' })

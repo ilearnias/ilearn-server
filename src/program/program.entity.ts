@@ -53,6 +53,12 @@ export class Program extends Model {
   description: string;
 
   @Column({
+    type: DataType.TEXT,
+    allowNull: true,
+  })
+  route: string;
+
+  @Column({
     type: DataType.FLOAT,
     allowNull: true,
   })

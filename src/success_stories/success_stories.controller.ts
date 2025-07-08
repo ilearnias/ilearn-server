@@ -47,6 +47,7 @@ export class SuccessStoriesController {
   }
 
   @Get()
+  @Public()
   @ApiOperation({ summary: 'Get all success stories' })
   @ApiResponse({
     status: 200,
@@ -59,6 +60,7 @@ export class SuccessStoriesController {
   }
 
   @Get(':id')
+  @Public()
   @ApiOperation({ summary: 'Get success story by id' })
   @ApiParam({ name: 'id', type: 'string', description: 'Success story ID' })
   @ApiResponse({

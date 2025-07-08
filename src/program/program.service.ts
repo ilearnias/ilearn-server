@@ -28,7 +28,7 @@ export class ProgramService {
 
       return new DataResponseDto(program, true, 'Program created successfully');
     } catch (error) {
-      console.log("---------Create program---------",error);
+      console.log('---------Create program---------', error);
       if (error instanceof HttpException) throw error;
       throw new InternalServerErrorException('Failed to create program');
     }
@@ -129,23 +129,21 @@ export class ProgramService {
     }
   }
 
-    async remove(id: string): Promise<DataResponseDto> {
-      try {
-        const program = await this.repository.findByPk(id);
-    
-        if (!program) {
-          throw new NotFoundException(`Program with ID ${id} not found`);
-        }
-    
-        await program.destroy({ force: true });
-    
-        return new DataResponseDto(null, true, 'Program deleted successfully');
-      } catch (error) {
-        console.log(error);
-        if (error instanceof HttpException) throw error;
-        throw new InternalServerErrorException('Failed to delete program');
+  async remove(id: string): Promise<DataResponseDto> {
+    try {
+      const program = await this.repository.findByPk(id);
+
+      if (!program) {
+        throw new NotFoundException(`Program with ID ${id} not found`);
       }
+
+      await program.destroy({ force: true });
+
+      return new DataResponseDto(null, true, 'Program deleted successfully');
+    } catch (error) {
+      console.log(error);
+      if (error instanceof HttpException) throw error;
+      throw new InternalServerErrorException('Failed to delete program');
     }
-
-
+  }
 }
