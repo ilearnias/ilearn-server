@@ -1,4 +1,10 @@
-import { Injectable, NotFoundException, InternalServerErrorException, HttpException, BadRequestException } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  InternalServerErrorException,
+  HttpException,
+  BadRequestException,
+} from '@nestjs/common';
 import { Inject } from '@nestjs/common';
 import { Op } from 'sequelize';
 
@@ -7,7 +13,7 @@ import { CreateGalleryDto } from './dto/create.dto';
 import { UpdateGalleryDto } from './dto/update.dto';
 import { QueryGalleryDto } from './dto/query.dto';
 import { DataResponseDto } from '../shared/dto/data-response.dto';
-import { UploadService } from '../UPLOAD/upload.service';
+import { UploadService } from '../upload/upload.service';
 
 @Injectable()
 export class GalleryService {
@@ -17,24 +23,34 @@ export class GalleryService {
     private uploadService: UploadService,
   ) {}
 
-  async uploadImages(files: Array<Express.Multer.File>): Promise<DataResponseDto> {
+  async uploadImages(
+    files: Array<Express.Multer.File>,
+  ): Promise<DataResponseDto> {
     try {
       if (!files || files.length === 0) {
         throw new BadRequestException('No files provided');
       }
 
-      const uploadPromises = files.map(file => this.uploadService.uploadImage(file));
+      const uploadPromises = files.map((file) =>
+        this.uploadService.uploadImage(file),
+      );
       const results = await Promise.all(uploadPromises);
-      const uploadedUrls = results.map(result => result.data);
-      
-      return new DataResponseDto(uploadedUrls, true, 'Images uploaded successfully');
+      const uploadedUrls = results.map((result) => result.data);
+
+      return new DataResponseDto(
+        uploadedUrls,
+        true,
+        'Images uploaded successfully',
+      );
     } catch (error) {
       console.log('Upload error:', error);
       if (error?.response?.data) {
         console.log('Detailed error:', error.response.data);
       }
       if (error instanceof HttpException) throw error;
-      throw new InternalServerErrorException('Failed to upload images: ' + error.message);
+      throw new InternalServerErrorException(
+        'Failed to upload images: ' + error.message,
+      );
     }
   }
 
@@ -45,7 +61,11 @@ export class GalleryService {
         isActive: createDto.isActive ?? true,
       });
 
-      return new DataResponseDto(gallery, true, 'Gallery item created successfully');
+      return new DataResponseDto(
+        gallery,
+        true,
+        'Gallery item created successfully',
+      );
     } catch (error) {
       console.log(error);
       if (error instanceof HttpException) throw error;
@@ -82,7 +102,9 @@ export class GalleryService {
     } catch (error) {
       console.log(error);
       if (error instanceof HttpException) throw error;
-      throw new InternalServerErrorException('Failed to retrieve gallery items');
+      throw new InternalServerErrorException(
+        'Failed to retrieve gallery items',
+      );
     }
   }
 
@@ -94,7 +116,11 @@ export class GalleryService {
         throw new NotFoundException(`Gallery item with ID ${id} not found`);
       }
 
-      return new DataResponseDto(gallery, true, 'Gallery item fetched successfully');
+      return new DataResponseDto(
+        gallery,
+        true,
+        'Gallery item fetched successfully',
+      );
     } catch (error) {
       console.log(error);
       if (error instanceof HttpException) throw error;
@@ -102,7 +128,10 @@ export class GalleryService {
     }
   }
 
-  async update(id: string, updateDto: UpdateGalleryDto): Promise<DataResponseDto> {
+  async update(
+    id: string,
+    updateDto: UpdateGalleryDto,
+  ): Promise<DataResponseDto> {
     try {
       const gallery = await this.repository.findByPk(id);
 
@@ -112,7 +141,11 @@ export class GalleryService {
 
       await gallery.update(updateDto);
 
-      return new DataResponseDto(gallery, true, 'Gallery item updated successfully');
+      return new DataResponseDto(
+        gallery,
+        true,
+        'Gallery item updated successfully',
+      );
     } catch (error) {
       console.log(error);
       if (error instanceof HttpException) throw error;
@@ -130,7 +163,11 @@ export class GalleryService {
 
       await gallery.destroy();
 
-      return new DataResponseDto(null, true, 'Gallery item deleted successfully');
+      return new DataResponseDto(
+        null,
+        true,
+        'Gallery item deleted successfully',
+      );
     } catch (error) {
       console.log(error);
       if (error instanceof HttpException) throw error;
