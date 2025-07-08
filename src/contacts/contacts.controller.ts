@@ -23,6 +23,7 @@ import { CreateContactsDto } from './dto/create.dto';
 import { QueryContactsDto } from './dto/query.dto';
 import { UpdateContactsDto } from './dto/update.dto';
 import { DataResponseDto } from '../shared/dto/data-response.dto';
+import { Public } from '../shared/decorators/public.decorator';
 
 @ApiTags('Contacts')
 @Controller('admin/contacts')
