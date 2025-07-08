@@ -2,7 +2,7 @@ import { CacheModule } from '@nestjs/cache-manager';
 import { Module } from '@nestjs/common';
 import { ConfigurationModule } from './config/config.module';
 import { DatabaseModule } from './database/database.module';
-import { UploadModule } from './upload/upload.module';
+// import { UploadModule } from './upload/upload.module';
 import { AchieversModule } from './achievers/achievers.module';
 import { TeamModule } from './team/team.module';
 import { UserModule } from './user/user.module';
@@ -41,7 +41,7 @@ import { NestJwtModule } from './auth/strategy/jwt_access.strategy';
     AchieversModule,
 
     // Legacy modules
-    UploadModule,
+    // UploadModule,
   ],
   controllers: [],
   providers: [],
