@@ -17,6 +17,12 @@ export class Program extends Model {
 
   @Column({
     type: DataType.STRING(100),
+    allowNull: true,
+  })
+  sub_title: string;
+
+  @Column({
+    type: DataType.STRING(100),
     allowNull: false,
   })
   category: string;

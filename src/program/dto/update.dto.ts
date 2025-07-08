@@ -5,16 +5,7 @@ import {
   MaxLength,
   IsNumber,
   IsBoolean,
-  IsEnum,
-  IsPositive,
-  Min,
 } from 'class-validator';
-
-enum ProgramStatus {
-  ACTIVE = 'Active',
-  INACTIVE = 'Inactive',
-  UPCOMING = 'Upcoming',
-}
 
 export class UpdateProgramDto {
   @ApiProperty({
@@ -29,60 +20,29 @@ export class UpdateProgramDto {
   title?: string;
 
   @ApiProperty({
-    description: 'Category of the program',
-    example: 'Web Development',
-    maxLength: 100,
+    description: 'Sub title of the program',
+    example: 'Advanced Web Development',
+    maxLength: 255,
     required: false,
   })
   @IsOptional()
   @IsString()
-  @MaxLength(100)
-  category?: string;
-
-  @ApiProperty({
-    description: 'Duration of the program',
-    example: '6 months',
-    maxLength: 50,
-    required: false,
-  })
-  @IsOptional()
-  @IsString()
-  @MaxLength(50)
-  duration?: string;
+  @MaxLength(255)
+  sub_title?: string;
 
   @ApiProperty({
     description: 'Status of the program',
-    example: 'active',
-    enum: ProgramStatus,
+    example: 'Ongoing',
     required: false,
   })
   @IsOptional()
-  @IsEnum(ProgramStatus)
-  status?: ProgramStatus;
-
-  @ApiProperty({
-    description: 'Number of enrollments in the program',
-    example: 0,
-    required: false,
-  })
-  @IsOptional()
-  @IsNumber()
-  @Min(0)
-  enrollments?: number;
-
-  @ApiProperty({
-    description: 'Price of the program',
-    example: 499.99,
-    required: false,
-  })
-  @IsOptional()
-  @IsNumber()
-  @IsPositive()
-  price?: number;
+  @IsString()
+  status?: string;
 
   @ApiProperty({
     description: 'Description of the program',
-    example: 'A comprehensive program covering modern web development technologies',
+    example:
+      'A comprehensive program covering modern web development technologies',
     required: false,
   })
   @IsOptional()
