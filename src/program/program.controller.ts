@@ -35,7 +35,7 @@ export class ProgramController {
   @Post()
   @Public()
   @HttpCode(HttpStatus.CREATED)
-  @ApiOperation({ summary: 'Create a new program' })    
+  @ApiOperation({ summary: 'Create a new program' })
   @ApiResponse({
     status: HttpStatus.CREATED,
     description: 'Program created successfully',
@@ -52,13 +52,45 @@ export class ProgramController {
   @Get()
   @Public()
   @ApiOperation({ summary: 'Get all programs with filters' })
-  @ApiQuery({ name: 'title', required: false, description: 'Filter by program title' })
-  @ApiQuery({ name: 'category', required: false, description: 'Filter by program category' })
-  @ApiQuery({ name: 'status', required: false, description: 'Filter by program status (active/inactive/upcoming)' })
-  @ApiQuery({ name: 'minPrice', required: false, type: 'number', description: 'Filter by minimum price' })
-  @ApiQuery({ name: 'maxPrice', required: false, type: 'number', description: 'Filter by maximum price' })
-  @ApiQuery({ name: 'page', required: false, type: 'number', description: 'Page number for pagination' })
-  @ApiQuery({ name: 'limit', required: false, type: 'number', description: 'Number of items per page' })
+  @ApiQuery({
+    name: 'title',
+    required: false,
+    description: 'Filter by program title',
+  })
+  @ApiQuery({
+    name: 'category',
+    required: false,
+    description: 'Filter by program category',
+  })
+  @ApiQuery({
+    name: 'status',
+    required: false,
+    description: 'Filter by program status (active/inactive/upcoming)',
+  })
+  @ApiQuery({
+    name: 'minPrice',
+    required: false,
+    type: 'number',
+    description: 'Filter by minimum price',
+  })
+  @ApiQuery({
+    name: 'maxPrice',
+    required: false,
+    type: 'number',
+    description: 'Filter by maximum price',
+  })
+  @ApiQuery({
+    name: 'page',
+    required: false,
+    type: 'number',
+    description: 'Page number for pagination',
+  })
+  @ApiQuery({
+    name: 'limit',
+    required: false,
+    type: 'number',
+    description: 'Number of items per page',
+  })
   @ApiResponse({
     status: HttpStatus.OK,
     description: 'Programs retrieved successfully',
@@ -116,17 +148,14 @@ export class ProgramController {
     return await this.programService.update(id, updateDto);
   }
 
-@Delete(':id')
-@ApiOperation({ summary: 'Delete program' })
-@ApiParam({
-  name: 'id',
-  type: 'string',
-  description: 'Program ID (UUID)',
-})
-
-async remove(@Param('id') id: string): Promise<DataResponseDto> {
-  return await this.programService.remove(id);
-}
-
-  
+  @Delete(':id')
+  @ApiOperation({ summary: 'Delete program' })
+  @ApiParam({
+    name: 'id',
+    type: 'string',
+    description: 'Program ID (UUID)',
+  })
+  async remove(@Param('id') id: string): Promise<DataResponseDto> {
+    return await this.programService.remove(id);
+  }
 }

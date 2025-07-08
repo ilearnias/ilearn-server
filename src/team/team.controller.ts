@@ -19,7 +19,6 @@ import { TeamService } from './team.service';
 import { CreateTeamDto } from './dto/create.dto';
 import { UpdateTeamDto } from './dto/update.dto';
 import { QueryTeamDto } from './dto/query.dto';
-import { Team } from './team.entity';
 import { DataResponseDto } from '@/shared/dto/data-response.dto';
 import { AuthGuard } from '@/shared/guards/auth.guard';
 import { Public } from '@/shared/decorators/public.decorator';

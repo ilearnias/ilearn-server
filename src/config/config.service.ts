@@ -3,7 +3,7 @@ import { Dialect } from 'sequelize';
 @Injectable()
 export class ConfigurationService {
   get sequelizeOrmConfig() {
-    console.log('process.env.DATABASE_HOST',  process.env.S3_ACCESS_KEY_ID);
+    console.log('process.env.DATABASE_HOST', process.env.S3_ACCESS_KEY_ID);
     return {
       dialect: process.env.DATABASE as Dialect,
       host: process.env.DATABASE_HOST,
@@ -35,12 +35,12 @@ export class ConfigurationService {
     };
   }
 
-  get jwtConfig(){
+  get jwtConfig() {
     return {
       accessTokenSecret: process.env.ACCESS_TOKEN_SECRET,
       refreshTokenSecret: process.env.REFRESH_TOKEN_SECRET,
       accessTokenExpiration: process.env.ACCESS_TOKEN_EXPIRY,
-      refreshTokenExpiration: process.env.REFRESH_TOKEN_EXPIRY
-    }
+      refreshTokenExpiration: process.env.REFRESH_TOKEN_EXPIRY,
+    };
   }
 }

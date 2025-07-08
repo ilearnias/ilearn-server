@@ -23,6 +23,7 @@ import { CreateJourneyDto } from './dto/create.dto';
 import { QueryJourneyDto } from './dto/query.dto';
 import { UpdateJourneyDto } from './dto/update.dto';
 import { DataResponseDto } from '../shared/dto/data-response.dto';
+import { Public } from '../shared/decorators/public.decorator';
 
 /**
  * Controller for managing journey entries
@@ -32,7 +33,7 @@ import { DataResponseDto } from '../shared/dto/data-response.dto';
 @Controller('journey')
 @ApiBearerAuth()
 export class JourneyController {
-  constructor(private readonly journeyService: JourneyService) { }
+  constructor(private readonly journeyService: JourneyService) {}
 
   /**
    * Create a new journey entry
@@ -57,6 +58,7 @@ export class JourneyController {
    * @returns paginated list of journey entries
    */
   @Get()
+  @Public()
   @ApiOperation({ summary: 'Get all journey entries' })
   @ApiResponse({
     status: 200,
@@ -72,6 +74,7 @@ export class JourneyController {
    * @returns journey entry details
    */
   @Get(':id')
+  @Public()
   @ApiOperation({ summary: 'Get journey entry by id' })
   @ApiParam({ name: 'id', type: 'string', description: 'Journey entry ID' })
   @ApiResponse({
