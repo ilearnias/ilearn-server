@@ -36,7 +36,6 @@ export class GalleryController {
   constructor(private readonly galleryService: GalleryService) {}
 
   @Post('upload')
-  @Public()
   @ApiOperation({ summary: 'Upload gallery images' })
   @ApiConsumes('multipart/form-data')
   @ApiResponse({
@@ -44,11 +43,13 @@ export class GalleryController {
     description: 'Images uploaded successfully',
     type: DataResponseDto,
   })
-  @UseInterceptors(FilesInterceptor('images', 10, {
-    limits: {
-      fileSize: 5 * 1024 * 1024, // 5MB
-    },
-  }))
+  @UseInterceptors(
+    FilesInterceptor('images', 10, {
+      limits: {
+        fileSize: 5 * 1024 * 1024, // 5MB
+      },
+    }),
+  )
   async uploadImages(
     @UploadedFiles() files: Array<Express.Multer.File>,
   ): Promise<DataResponseDto> {
@@ -56,7 +57,6 @@ export class GalleryController {
   }
 
   @Post()
-  @Public()
   @HttpCode(HttpStatus.CREATED)
   @ApiOperation({ summary: 'Create a new gallery item' })
   @ApiResponse({
@@ -64,7 +64,10 @@ export class GalleryController {
     description: 'Gallery item created successfully',
     type: DataResponseDto,
   })
-  @ApiResponse({ status: HttpStatus.BAD_REQUEST, description: 'Bad request - validation error' })
+  @ApiResponse({
+    status: HttpStatus.BAD_REQUEST,
+    description: 'Bad request - validation error',
+  })
   async create(@Body() createDto: CreateGalleryDto): Promise<DataResponseDto> {
     return await this.galleryService.create(createDto);
   }
@@ -90,13 +93,15 @@ export class GalleryController {
     description: 'Gallery item retrieved successfully',
     type: DataResponseDto,
   })
-  @ApiResponse({ status: HttpStatus.NOT_FOUND, description: 'Gallery item not found' })
+  @ApiResponse({
+    status: HttpStatus.NOT_FOUND,
+    description: 'Gallery item not found',
+  })
   async findOne(@Param('id') id: string): Promise<DataResponseDto> {
     return await this.galleryService.findOne(id);
   }
 
   @Patch(':id')
-  @Public()
   @ApiOperation({ summary: 'Update gallery item' })
   @ApiParam({ name: 'id', type: 'string', description: 'Gallery item ID' })
   @ApiResponse({
@@ -104,7 +109,10 @@ export class GalleryController {
     description: 'Gallery item updated successfully',
     type: DataResponseDto,
   })
-  @ApiResponse({ status: HttpStatus.NOT_FOUND, description: 'Gallery item not found' })
+  @ApiResponse({
+    status: HttpStatus.NOT_FOUND,
+    description: 'Gallery item not found',
+  })
   async update(
     @Param('id') id: string,
     @Body() updateDto: UpdateGalleryDto,
@@ -113,14 +121,16 @@ export class GalleryController {
   }
 
   @Delete(':id')
-  @Public()
   @ApiOperation({ summary: 'Delete gallery item' })
   @ApiParam({ name: 'id', type: 'string', description: 'Gallery item ID' })
   @ApiResponse({
     status: HttpStatus.NO_CONTENT,
     description: 'Gallery item deleted successfully',
   })
-  @ApiResponse({ status: HttpStatus.NOT_FOUND, description: 'Gallery item not found' })
+  @ApiResponse({
+    status: HttpStatus.NOT_FOUND,
+    description: 'Gallery item not found',
+  })
   async remove(@Param('id') id: string): Promise<DataResponseDto> {
     return await this.galleryService.remove(id);
   }

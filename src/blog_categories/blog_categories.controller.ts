@@ -23,16 +23,15 @@ import { CreateBlogCategoriesDto } from './dto/create.dto';
 import { QueryBlogCategoriesDto } from './dto/query.dto';
 import { UpdateBlogCategoriesDto } from './dto/update.dto';
 import { DataResponseDto } from '../shared/dto/data-response.dto';
-import { Public } from 'src/shared/decorators/public.decorator'
+import { Public } from 'src/shared/decorators/public.decorator';
 
 @ApiTags('Blog Categories')
 @Controller('admin/blog/categories')
 @ApiBearerAuth()
 export class BlogCategoriesController {
-  constructor(private readonly blogCategoriesService: BlogCategoriesService) { }
+  constructor(private readonly blogCategoriesService: BlogCategoriesService) {}
 
   @Post()
-  @Public()
   @HttpCode(HttpStatus.CREATED)
   @ApiOperation({ summary: 'Create a new blog category' })
   @ApiResponse({
@@ -73,7 +72,6 @@ export class BlogCategoriesController {
   }
 
   @Patch(':id')
-  @Public()
   @ApiOperation({ summary: 'Update blog category' })
   @ApiParam({ name: 'id', type: 'string', description: 'Blog category ID' })
   @ApiResponse({
@@ -89,7 +87,6 @@ export class BlogCategoriesController {
   }
 
   @Delete(':id')
-  @Public()
   @ApiOperation({ summary: 'Delete blog category' })
   @ApiParam({ name: 'id', type: 'string', description: 'Blog category ID' })
   @ApiResponse({

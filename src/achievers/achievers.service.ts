@@ -22,7 +22,7 @@ export class AchieversService {
   constructor(
     @Inject('AchieversProvider')
     private repository: typeof Achievers,
-  ) { }
+  ) {}
 
   /**
    * Creates a new achiever

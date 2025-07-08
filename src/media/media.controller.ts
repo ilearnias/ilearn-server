@@ -23,6 +23,7 @@ import { CreateMediaDto } from './dto/create.dto';
 import { QueryMediaDto } from './dto/query.dto';
 import { UpdateMediaDto } from './dto/update.dto';
 import { DataResponseDto } from 'src/shared/dto/data-response.dto';
+import { Public } from '../shared/decorators/public.decorator';
 
 /**
  * Controller for managing media entries
@@ -57,6 +58,7 @@ export class MediaController {
    * @returns paginated list of media entries
    */
   @Get()
+  @Public()
   @ApiOperation({ summary: 'Get all media entries' })
   @ApiResponse({
     status: 200,
@@ -72,6 +74,7 @@ export class MediaController {
    * @returns media entry details
    */
   @Get(':id')
+  @Public()
   @ApiOperation({ summary: 'Get media entry by id' })
   @ApiParam({ name: 'id', type: 'string', description: 'Media entry ID' })
   @ApiResponse({

@@ -19,7 +19,6 @@ import { ResultSummaryService } from './result_summary.service';
 import { CreateResultSummaryDto } from './dto/create.dto';
 import { UpdateResultSummaryDto } from './dto/update.dto';
 import { QueryResultSummaryDto } from './dto/query.dto';
-import { ResultSummary } from './result_summary.entity';
 import { DataResponseDto } from '@/shared/dto/data-response.dto';
 import { AuthGuard } from '@/shared/guards/auth.guard';
 import { Public } from '@/shared/decorators/public.decorator';

@@ -23,16 +23,14 @@ import { CreateContactsDto } from './dto/create.dto';
 import { QueryContactsDto } from './dto/query.dto';
 import { UpdateContactsDto } from './dto/update.dto';
 import { DataResponseDto } from '../shared/dto/data-response.dto';
-import { Public } from 'src/shared/decorators/public.decorator';
 
 @ApiTags('Contacts')
 @Controller('admin/contacts')
 @ApiBearerAuth()
 export class ContactsController {
-  constructor(private readonly contactsService: ContactsService) { }
+  constructor(private readonly contactsService: ContactsService) {}
 
   @Post()
-  @Public()
   @HttpCode(HttpStatus.CREATED)
   @ApiOperation({ summary: 'Create a new contact' })
   @ApiResponse({ status: 201, description: 'Contact created successfully' })
@@ -63,7 +61,6 @@ export class ContactsController {
   }
 
   @Patch(':id')
-  @Public()
   @ApiOperation({ summary: 'Update contact' })
   @ApiParam({ name: 'id', type: 'string', description: 'Contact ID' })
   @ApiResponse({ status: 200, description: 'Contact updated successfully' })
@@ -76,7 +73,6 @@ export class ContactsController {
   }
 
   @Delete(':id')
-  @Public()
   @ApiOperation({ summary: 'Delete contact' })
   @ApiParam({ name: 'id', type: 'string', description: 'Contact ID' })
   @ApiResponse({ status: 204, description: 'Contact deleted successfully' })

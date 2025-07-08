@@ -25,8 +25,6 @@ import { UpdateAchieversDto } from './dto/update.dto';
 import { DataResponseDto } from '../shared/dto/data-response.dto';
 import { Public } from 'src/shared/decorators/public.decorator';
 
-
-
 /**
  * Controller for managing achievers
  * Provides CRUD operations for achievers entity
@@ -35,7 +33,7 @@ import { Public } from 'src/shared/decorators/public.decorator';
 @Controller('/admin/achievers')
 @ApiBearerAuth()
 export class AchieversController {
-  constructor(private readonly achieversService: AchieversService) { }
+  constructor(private readonly achieversService: AchieversService) {}
 
   /**
    * Create a new achiever
@@ -43,7 +41,6 @@ export class AchieversController {
    * @returns newly created achiever
    */
   @Post()
-  @Public()
   @HttpCode(HttpStatus.CREATED)
   @ApiOperation({ summary: 'Create a new achiever' })
   @ApiResponse({
@@ -119,7 +116,6 @@ export class AchieversController {
    * @returns success response
    */
   @Delete(':id')
-  @Public()
   @ApiOperation({ summary: 'Delete achiever' })
   @ApiParam({ name: 'id', type: 'string', description: 'Achiever ID' })
   @ApiResponse({

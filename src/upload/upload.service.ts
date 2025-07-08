@@ -102,6 +102,7 @@ export class UploadService {
       await this.s3.deleteObject(params).promise();
       return { success: true, message: 'File deleted successfully' };
     } catch (err) {
+      console.log('err', err);
       throw new InternalServerErrorException('Failed to delete file');
     }
   }

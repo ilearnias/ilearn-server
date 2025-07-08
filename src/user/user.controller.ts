@@ -21,7 +21,6 @@ import { UpdateUserDto } from './dto/update.dto';
 import { QueryUserDto } from './dto/query.dto';
 import { AuthGuard } from '@/shared/guards/auth.guard';
 import { DataResponseDto } from '@/shared/dto/data-response.dto';
-import { Public } from '@/shared/decorators/public.decorator';
 
 @ApiTags('User')
 @Controller('user')
@@ -43,7 +42,6 @@ export class UserController {
   }
 
   @Get()
-  @Public()
   @ApiOperation({ summary: 'Get all users with pagination and search' })
   @ApiResponse({
     status: 200,
@@ -55,7 +53,6 @@ export class UserController {
   }
 
   @Get(':id')
-  @Public()
   @ApiOperation({ summary: 'Get a user by ID' })
   @ApiResponse({
     status: 200,
