@@ -122,6 +122,7 @@ export class ProgramController {
   }
 
   @Patch(':id')
+  @Public()
   @ApiOperation({ summary: 'Update program' })
   @ApiParam({
     name: 'id',
@@ -149,6 +150,7 @@ export class ProgramController {
   }
 
   @Delete(':id')
+  @Public()
   @ApiOperation({ summary: 'Delete program' })
   @ApiParam({
     name: 'id',

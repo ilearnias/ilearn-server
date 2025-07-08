@@ -40,6 +40,7 @@ export class ContactsController {
   }
 
   @Get()
+  @Public()
   @ApiOperation({ summary: 'Get all contacts' })
   @ApiResponse({
     status: 200,
@@ -50,6 +51,7 @@ export class ContactsController {
   }
 
   @Get(':id')
+  @Public()
   @ApiOperation({ summary: 'Get contact by id' })
   @ApiParam({ name: 'id', type: 'string', description: 'Contact ID' })
   @ApiResponse({ status: 200, description: 'Contact retrieved successfully' })

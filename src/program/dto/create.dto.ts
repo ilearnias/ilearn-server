@@ -49,6 +49,16 @@ export class CreateProgramDto {
   duration: string;
 
   @ApiProperty({
+    description: 'Route of the program',
+    example: 'route-of-the-program',
+    maxLength: 50,
+  })
+  @IsNotEmpty()
+  @IsString()
+  @MaxLength(50)
+  route: string;
+
+  @ApiProperty({
     description: 'Status of the program',
     example: 'active',
     enum: ProgramStatus,
