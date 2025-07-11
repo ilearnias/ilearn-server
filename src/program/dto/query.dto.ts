@@ -25,20 +25,11 @@ export class QueryProgramDto {
   title?: string;
 
   @ApiProperty({
-    description: 'Filter by category',
-    required: false,
-  })
-  @IsOptional()
-  @IsString()
-  category?: string;
-
-  @ApiProperty({
     description: 'Filter by status',
     enum: ProgramStatus,
     required: false,
   })
   @IsOptional()
-  @IsEnum(ProgramStatus)
   status?: ProgramStatus;
 
   @ApiProperty({

@@ -40,7 +40,6 @@ export class ProgramService {
         page = 1,
         limit = 10,
         title,
-        category,
         status,
         minPrice,
         maxPrice,
@@ -51,10 +50,6 @@ export class ProgramService {
 
       if (title) {
         whereClause.title = { [Op.iLike]: `%${title}%` };
-      }
-
-      if (category) {
-        whereClause.category = { [Op.iLike]: `%${category}%` };
       }
 
       if (status) {

@@ -9,48 +9,20 @@ export class Program extends Model {
   })
   id: string;
 
-  @Column({
-    type: DataType.STRING(255),
-    allowNull: false,
-  })
+  @Column({ type: DataType.STRING(255), allowNull: false })
   title: string;
 
-  @Column({
-    type: DataType.STRING(100),
-    allowNull: true,
-  })
+  @Column({ type: DataType.STRING(255), allowNull: true })
   sub_title: string;
 
   @Column({
-    type: DataType.STRING(100),
-    allowNull: false,
-  })
-  category: string;
-
-  @Column({
-    type: DataType.STRING(50),
-    allowNull: false,
-  })
-  duration: string;
-
-  @Column({
     type: DataType.ENUM('Active', 'Inactive', 'Upcoming'),
-    defaultValue: 'Active',
     allowNull: false,
   })
   status: string;
 
-  @Column({
-    type: DataType.INTEGER,
-    defaultValue: 0,
-  })
-  enrollments: number;
-
-  @Column({
-    type: DataType.DECIMAL(10, 2),
-    allowNull: false,
-  })
-  price: number;
+  @Column({ type: DataType.FLOAT, allowNull: false })
+  order: number;
 
   @Column({
     type: DataType.TEXT,
@@ -58,39 +30,9 @@ export class Program extends Model {
   })
   description: string;
 
-  @Column({
-    type: DataType.TEXT,
-    allowNull: true,
-  })
-  route: string;
-
-  @Column({
-    type: DataType.FLOAT,
-    allowNull: true,
-  })
-  order: number;
-
-  @Column({
-    type: DataType.BOOLEAN,
-    defaultValue: true,
-  })
-  isActive: boolean;
-
-  @Column({
-    type: DataType.DATE,
-    defaultValue: DataType.NOW,
-  })
+  @Column({ type: DataType.DATE, defaultValue: DataType.NOW })
   createdAt: Date;
 
-  @Column({
-    type: DataType.DATE,
-    defaultValue: DataType.NOW,
-  })
+  @Column({ type: DataType.DATE, defaultValue: DataType.NOW })
   updatedAt: Date;
-
-  @Column({
-    type: DataType.DATE,
-    allowNull: true,
-  })
-  deletedAt: Date;
 }
