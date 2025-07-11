@@ -23,6 +23,7 @@ import { CreateContactsDto } from './dto/create.dto';
 import { QueryContactsDto } from './dto/query.dto';
 import { UpdateContactsDto } from './dto/update.dto';
 import { DataResponseDto } from '../shared/dto/data-response.dto';
+import { Public } from '../shared/decorators/public.decorator';
 
 @ApiTags('Contacts')
 @Controller('admin/contacts')
@@ -40,6 +41,7 @@ export class ContactsController {
   }
 
   @Get()
+  @Public()
   @ApiOperation({ summary: 'Get all contacts' })
   @ApiResponse({
     status: 200,
@@ -50,6 +52,7 @@ export class ContactsController {
   }
 
   @Get(':id')
+  @Public()
   @ApiOperation({ summary: 'Get contact by id' })
   @ApiParam({ name: 'id', type: 'string', description: 'Contact ID' })
   @ApiResponse({ status: 200, description: 'Contact retrieved successfully' })

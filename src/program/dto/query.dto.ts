@@ -1,5 +1,12 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsString, IsOptional, IsEnum, IsNumber, Min, Max } from 'class-validator';
+import {
+  IsString,
+  IsOptional,
+  IsEnum,
+  IsNumber,
+  Min,
+  Max,
+} from 'class-validator';
 import { Type } from 'class-transformer';
 
 enum ProgramStatus {
@@ -18,20 +25,11 @@ export class QueryProgramDto {
   title?: string;
 
   @ApiProperty({
-    description: 'Filter by category',
-    required: false,
-  })
-  @IsOptional()
-  @IsString()
-  category?: string;
-
-  @ApiProperty({
     description: 'Filter by status',
     enum: ProgramStatus,
     required: false,
   })
   @IsOptional()
-  @IsEnum(ProgramStatus)
   status?: ProgramStatus;
 
   @ApiProperty({
