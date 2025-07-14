@@ -22,22 +22,22 @@ export class Media extends Model {
   video: string;
 
   @Column({
-    type: DataType.STRING(255),
-    allowNull: true,
+    type: DataType.BOOLEAN,
+    defaultValue: true,
   })
-  image: string;
+  isActive: boolean;
+
+  @Column({
+    type: DataType.BOOLEAN,
+    defaultValue: false,
+  })
+  isTestimonial: boolean;
 
   @Column({
     type: DataType.FLOAT,
     allowNull: true,
   })
   order: number;
-
-  @Column({
-    type: DataType.BOOLEAN,
-    defaultValue: true,
-  })
-  isActive: boolean;
 
   @Column({
     type: DataType.DATE,

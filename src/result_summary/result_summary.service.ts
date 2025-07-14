@@ -26,7 +26,6 @@ export class ResultSummaryService {
     try {
       const resultSummary = await this.repository.create({
         ...createResultSummaryDto,
-        isActive: createResultSummaryDto.isActive ?? true,
       });
 
       return new DataResponseDto(
@@ -46,46 +45,39 @@ export class ResultSummaryService {
       const {
         page = 1,
         limit = 10,
-        title,
-        examName,
-        examDate,
-        minPassPercentage,
-        maxPassPercentage,
-        isActive,
+        search,
+        year,
+        minTotalSelection,
+        maxTotalSelection,
       } = params;
 
       const offset = (page - 1) * limit;
       const whereClause: any = {};
 
-      if (title) {
-        whereClause.title = { [Op.iLike]: `%${title}%` };
+      // Add search filter if provided
+      if (search) {
+        whereClause[Op.or] = [{ year: { [Op.like]: `%${search}%` } }];
       }
 
-      if (examName) {
-        whereClause.examName = { [Op.iLike]: `%${examName}%` };
+      // Add year filter if provided
+      if (year) {
+        whereClause.year = year;
       }
 
-      if (examDate) {
-        whereClause.examDate = examDate;
+      // Add total selection range filters if provided
+      if (minTotalSelection !== undefined) {
+        whereClause.totalSelection = { [Op.gte]: minTotalSelection };
       }
 
-      if (minPassPercentage !== undefined) {
-        whereClause.passPercentage = { [Op.gte]: minPassPercentage };
-      }
-
-      if (maxPassPercentage !== undefined) {
-        if (whereClause.passPercentage) {
-          whereClause.passPercentage = {
-            ...whereClause.passPercentage,
-            [Op.lte]: maxPassPercentage,
+      if (maxTotalSelection !== undefined) {
+        if (whereClause.totalSelection) {
+          whereClause.totalSelection = {
+            ...whereClause.totalSelection,
+            [Op.lte]: maxTotalSelection,
           };
         } else {
-          whereClause.passPercentage = { [Op.lte]: maxPassPercentage };
+          whereClause.totalSelection = { [Op.lte]: maxTotalSelection };
         }
-      }
-
-      if (isActive !== undefined) {
-        whereClause.isActive = isActive;
       }
 
       const { rows, count } = await this.repository.findAndCountAll({
@@ -95,14 +87,14 @@ export class ResultSummaryService {
         distinct: true,
         order: [
           ['order', 'ASC'],
-          ['createdAt', 'DESC'],
+          ['year', 'DESC'],
         ],
       });
 
       const pageOptionsDto = {
         page,
         limit,
-        query: title || examName || '',
+        query: search || '',
         offset: offset,
       };
 
@@ -184,56 +176,6 @@ export class ResultSummaryService {
       console.log(error);
       if (error instanceof HttpException) throw error;
       throw new InternalServerErrorException('Failed to delete result summary');
-    }
-  }
-
-  async softDelete(id: string): Promise<DataResponseDto> {
-    try {
-      const resultSummary = await this.repository.findByPk(id);
-
-      if (!resultSummary) {
-        throw new NotFoundException(`Result summary with ID ${id} not found`);
-      }
-
-      await resultSummary.destroy();
-
-      return new DataResponseDto(
-        null,
-        true,
-        'Result summary soft deleted successfully',
-      );
-    } catch (error) {
-      console.log(error);
-      if (error instanceof HttpException) throw error;
-      throw new InternalServerErrorException(
-        'Failed to soft delete result summary',
-      );
-    }
-  }
-
-  async restore(id: string): Promise<DataResponseDto> {
-    try {
-      const resultSummary = await this.repository.findByPk(id, {
-        paranoid: false,
-      });
-
-      if (!resultSummary) {
-        throw new NotFoundException(`Result summary with ID ${id} not found`);
-      }
-
-      await resultSummary.restore();
-
-      return new DataResponseDto(
-        resultSummary,
-        true,
-        'Result summary restored successfully',
-      );
-    } catch (error) {
-      console.log(error);
-      if (error instanceof HttpException) throw error;
-      throw new InternalServerErrorException(
-        'Failed to restore result summary',
-      );
     }
   }
 }

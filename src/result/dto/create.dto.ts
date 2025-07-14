@@ -28,6 +28,17 @@ export class CreateResultDto {
   description?: string;
 
   @ApiProperty({
+    description: 'Media URL for the result',
+    example: 'https://example.com/result-image.jpg',
+    maxLength: 255,
+    required: false,
+  })
+  @IsOptional()
+  @IsString()
+  @MaxLength(255)
+  media?: string;
+
+  @ApiProperty({
     description: 'Order/position of the result',
     example: 1.0,
     required: false,

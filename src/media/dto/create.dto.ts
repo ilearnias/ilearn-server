@@ -31,17 +31,6 @@ export class CreateMediaDto {
   video?: string;
 
   @ApiProperty({
-    description: 'Image URL',
-    example: 'https://example.com/image.jpg',
-    maxLength: 255,
-    required: false,
-  })
-  @IsOptional()
-  @IsString()
-  @MaxLength(255)
-  image?: string;
-
-  @ApiProperty({
     description: 'Order/position of the media',
     example: 1.0,
     required: false,
@@ -59,4 +48,14 @@ export class CreateMediaDto {
   @IsOptional()
   @IsBoolean()
   isActive?: boolean;
+
+  @ApiProperty({
+    description: 'Whether the media is a testimonial',
+    example: false,
+    required: false,
+    default: false,
+  })
+  @IsOptional()
+  @IsBoolean()
+  isTestimonial?: boolean;
 }

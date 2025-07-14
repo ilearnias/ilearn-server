@@ -45,4 +45,14 @@ export class QueryMediaDto {
   @Type(() => Boolean)
   @IsBoolean()
   isActive?: boolean;
+
+  @ApiProperty({
+    description: 'Filter by testimonial status',
+    required: false,
+    type: Boolean,
+  })
+  @IsOptional()
+  @Type(() => Boolean)
+  @IsBoolean()
+  isTestimonial?: boolean;
 }

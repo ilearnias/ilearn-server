@@ -10,82 +10,22 @@ export class ResultSummary extends Model {
   id: string;
 
   @Column({
-    type: DataType.STRING(255),
-    allowNull: false,
-  })
-  title: string;
-
-  @Column({
-    type: DataType.TEXT,
+    type: DataType.STRING(4),
     allowNull: true,
   })
-  description: string;
-
-  @Column({
-    type: DataType.STRING(255),
-    allowNull: true,
-  })
-  examName: string;
-
-  @Column({
-    type: DataType.STRING(255),
-    allowNull: true,
-  })
-  examDate: string;
+  year: string;
 
   @Column({
     type: DataType.INTEGER,
     allowNull: true,
   })
-  totalStudents: number;
+  totalSelection: number;
 
   @Column({
     type: DataType.INTEGER,
     allowNull: true,
   })
-  passedStudents: number;
-
-  @Column({
-    type: DataType.INTEGER,
-    allowNull: true,
-  })
-  failedStudents: number;
-
-  @Column({
-    type: DataType.FLOAT,
-    allowNull: true,
-  })
-  passPercentage: number;
-
-  @Column({
-    type: DataType.FLOAT,
-    allowNull: true,
-  })
-  averageScore: number;
-
-  @Column({
-    type: DataType.FLOAT,
-    allowNull: true,
-  })
-  highestScore: number;
-
-  @Column({
-    type: DataType.FLOAT,
-    allowNull: true,
-  })
-  lowestScore: number;
-
-  @Column({
-    type: DataType.STRING(255),
-    allowNull: true,
-  })
-  image: string;
-
-  @Column({
-    type: DataType.JSON,
-    allowNull: true,
-  })
-  additionalData: any;
+  topRanks: number;
 
   @Column({
     type: DataType.FLOAT,
@@ -94,10 +34,16 @@ export class ResultSummary extends Model {
   order: number;
 
   @Column({
-    type: DataType.BOOLEAN,
-    defaultValue: true,
+    type: DataType.INTEGER,
+    allowNull: true,
   })
-  isActive: boolean;
+  pcmClassroom: number;
+
+  @Column({
+    type: DataType.INTEGER,
+    allowNull: true,
+  })
+  firstAttempt: number;
 
   @Column({
     type: DataType.DATE,

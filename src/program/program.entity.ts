@@ -16,6 +16,12 @@ export class Program extends Model {
   sub_title: string;
 
   @Column({
+    type: DataType.TEXT,
+    allowNull: true,
+  })
+  description: string;
+
+  @Column({
     type: DataType.ENUM('Active', 'Inactive', 'Upcoming'),
     allowNull: false,
   })
@@ -24,11 +30,8 @@ export class Program extends Model {
   @Column({ type: DataType.FLOAT, allowNull: false })
   order: number;
 
-  @Column({
-    type: DataType.TEXT,
-    allowNull: true,
-  })
-  description: string;
+  @Column({ type: DataType.STRING(255), allowNull: true })
+  route: string;
 
   @Column({ type: DataType.DATE, defaultValue: DataType.NOW })
   createdAt: Date;

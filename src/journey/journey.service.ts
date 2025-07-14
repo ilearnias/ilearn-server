@@ -22,7 +22,7 @@ export class JourneyService {
   constructor(
     @Inject('JourneyProvider')
     private repository: typeof Journey,
-  ) { }
+  ) {}
 
   /**
    * Creates a new journey entry
@@ -66,6 +66,8 @@ export class JourneyService {
         whereClause[Op.or] = [
           { year: { [Op.like]: `%${search}%` } },
           { description: { [Op.like]: `%${search}%` } },
+          { media: { [Op.like]: `%${search}%` } },
+          { video: { [Op.like]: `%${search}%` } },
         ];
       }
 

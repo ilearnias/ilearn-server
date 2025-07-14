@@ -1,83 +1,60 @@
-import {
-  IsString,
-  IsOptional,
-  IsNumber,
-  IsBoolean,
-  IsDateString,
-} from 'class-validator';
-import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { ApiProperty } from '@nestjs/swagger';
+import { IsString, IsOptional, IsNumber, MaxLength } from 'class-validator';
 
 export class CreateResultSummaryDto {
-  @ApiProperty({ description: 'Result summary title' })
-  @IsString()
-  title: string;
-
-  @ApiPropertyOptional({ description: 'Result summary description' })
+  @ApiProperty({
+    description: 'Year of the result summary',
+    example: '2023',
+    maxLength: 4,
+    required: false,
+  })
   @IsOptional()
   @IsString()
-  description?: string;
+  @MaxLength(4)
+  year?: string;
 
-  @ApiPropertyOptional({ description: 'Exam name' })
-  @IsOptional()
-  @IsString()
-  examName?: string;
-
-  @ApiPropertyOptional({ description: 'Exam date' })
-  @IsOptional()
-  @IsDateString()
-  examDate?: string;
-
-  @ApiPropertyOptional({ description: 'Total number of students' })
+  @ApiProperty({
+    description: 'Total number of selections',
+    example: 150,
+    required: false,
+  })
   @IsOptional()
   @IsNumber()
-  totalStudents?: number;
+  totalSelection?: number;
 
-  @ApiPropertyOptional({ description: 'Number of passed students' })
+  @ApiProperty({
+    description: 'Number of top ranks',
+    example: 25,
+    required: false,
+  })
   @IsOptional()
   @IsNumber()
-  passedStudents?: number;
+  topRanks?: number;
 
-  @ApiPropertyOptional({ description: 'Number of failed students' })
-  @IsOptional()
-  @IsNumber()
-  failedStudents?: number;
-
-  @ApiPropertyOptional({ description: 'Pass percentage' })
-  @IsOptional()
-  @IsNumber()
-  passPercentage?: number;
-
-  @ApiPropertyOptional({ description: 'Average score' })
-  @IsOptional()
-  @IsNumber()
-  averageScore?: number;
-
-  @ApiPropertyOptional({ description: 'Highest score' })
-  @IsOptional()
-  @IsNumber()
-  highestScore?: number;
-
-  @ApiPropertyOptional({ description: 'Lowest score' })
-  @IsOptional()
-  @IsNumber()
-  lowestScore?: number;
-
-  @ApiPropertyOptional({ description: 'Result summary image URL' })
-  @IsOptional()
-  @IsString()
-  image?: string;
-
-  @ApiPropertyOptional({ description: 'Additional data in JSON format' })
-  @IsOptional()
-  additionalData?: any;
-
-  @ApiPropertyOptional({ description: 'Display order' })
+  @ApiProperty({
+    description: 'Order/position of the result summary',
+    example: 1.0,
+    required: false,
+  })
   @IsOptional()
   @IsNumber()
   order?: number;
 
-  @ApiPropertyOptional({ description: 'Active status', default: true })
+  @ApiProperty({
+    description: 'Number of PCM classroom students',
+    example: 80,
+    required: false,
+  })
   @IsOptional()
-  @IsBoolean()
-  isActive?: boolean;
+  @IsNumber()
+  pcmClassroom?: number;
+
+  @ApiProperty({
+    description: 'Number of first attempt students',
+    example: 120,
+    required: false,
+  })
+  @IsOptional()
+  @IsNumber()
+  firstAttempt?: number;
 }

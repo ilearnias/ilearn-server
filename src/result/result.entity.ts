@@ -22,6 +22,12 @@ export class Result extends Model {
   description: string;
 
   @Column({
+    type: DataType.STRING(255),
+    allowNull: true,
+  })
+  media: string;
+
+  @Column({
     type: DataType.FLOAT,
     allowNull: true,
   })
