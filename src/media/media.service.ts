@@ -56,7 +56,7 @@ export class MediaService {
    */
   async findAll(params: QueryMediaDto): Promise<DataResponseDto> {
     try {
-      const { page = 1, limit = 10, search, isActive } = params;
+      const { page = 1, limit = 10, search, isActive, isTestimonial } = params;
 
       const offset = (page - 1) * limit;
       const whereClause: any = {};
@@ -66,13 +66,17 @@ export class MediaService {
         whereClause[Op.or] = [
           { description: { [Op.like]: `%${search}%` } },
           { video: { [Op.like]: `%${search}%` } },
-          { image: { [Op.like]: `%${search}%` } },
         ];
       }
 
       // Add active status filter if provided
       if (isActive !== undefined) {
         whereClause.isActive = isActive;
+      }
+
+      // Add testimonial status filter if provided
+      if (isTestimonial !== undefined) {
+        whereClause.isTestimonial = isTestimonial;
       }
 
       // Find media entries with pagination

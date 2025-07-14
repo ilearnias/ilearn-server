@@ -1,45 +1,67 @@
-import { IsOptional, IsString, IsBoolean, IsNumber } from 'class-validator';
-import { ApiPropertyOptional } from '@nestjs/swagger';
-import { PageOptionsDto } from '../../shared/dto/page-option.dto';
+import { ApiProperty } from '@nestjs/swagger';
+import { Type } from 'class-transformer';
+import { IsInt, IsOptional, IsString, Min, IsNumber } from 'class-validator';
 
-export class QueryResultSummaryDto extends PageOptionsDto {
-  @ApiPropertyOptional({ description: 'Search by title' })
+export class QueryResultSummaryDto {
+  @ApiProperty({
+    description: 'Page number for pagination',
+    required: false,
+    default: 1,
+    type: Number,
+  })
+  @IsOptional()
+  @Type(() => Number)
+  @IsInt()
+  @Min(1)
+  page?: number = 1;
+
+  @ApiProperty({
+    description: 'Number of items per page',
+    required: false,
+    default: 10,
+    type: Number,
+  })
+  @IsOptional()
+  @Type(() => Number)
+  @IsInt()
+  @Min(1)
+  limit?: number = 10;
+
+  @ApiProperty({
+    description: 'Search term for filtering result summaries',
+    required: false,
+    type: String,
+  })
   @IsOptional()
   @IsString()
-  title?: string;
+  search?: string;
 
-  @ApiPropertyOptional({ description: 'Search by exam name' })
+  @ApiProperty({
+    description: 'Filter by year',
+    required: false,
+    type: String,
+  })
   @IsOptional()
   @IsString()
-  examName?: string;
+  year?: string;
 
-  @ApiPropertyOptional({ description: 'Filter by exam date' })
+  @ApiProperty({
+    description: 'Filter by minimum total selection',
+    required: false,
+    type: Number,
+  })
   @IsOptional()
-  @IsString()
-  examDate?: string;
-
-  @ApiPropertyOptional({ description: 'Filter by minimum pass percentage' })
-  @IsOptional()
+  @Type(() => Number)
   @IsNumber()
-  minPassPercentage?: number;
+  minTotalSelection?: number;
 
-  @ApiPropertyOptional({ description: 'Limit' })
+  @ApiProperty({
+    description: 'Filter by maximum total selection',
+    required: false,
+    type: Number,
+  })
   @IsOptional()
+  @Type(() => Number)
   @IsNumber()
-  limit?: number;
-
-  @ApiPropertyOptional({ description: 'Page number' })
-  @IsOptional()
-  @IsNumber()
-  page?: number;
-
-  @ApiPropertyOptional({ description: 'Filter by maximum pass percentage' })
-  @IsOptional()
-  @IsNumber()
-  maxPassPercentage?: number;
-
-  @ApiPropertyOptional({ description: 'Filter by active status' })
-  @IsOptional()
-  @IsBoolean()
-  isActive?: boolean;
+  maxTotalSelection?: number;
 }

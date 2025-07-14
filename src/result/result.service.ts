@@ -43,6 +43,7 @@ export class ResultService {
         whereClause[Op.or] = [
           { year: { [Op.like]: `%${search}%` } },
           { description: { [Op.like]: `%${search}%` } },
+          { media: { [Op.like]: `%${search}%` } },
         ];
       }
       if (year) {

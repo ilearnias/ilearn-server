@@ -110,19 +110,6 @@ export class ResultSummaryController {
   })
   @ApiResponse({ status: 404, description: 'Result summary not found' })
   softDelete(@Param('id') id: string): Promise<DataResponseDto> {
-    return this.resultSummaryService.softDelete(id);
-  }
-
-  @Post(':id/restore')
-  @ApiBearerAuth()
-  @ApiOperation({ summary: 'Restore a soft deleted result summary' })
-  @ApiResponse({
-    status: 200,
-    description: 'Result summary restored successfully',
-    type: DataResponseDto,
-  })
-  @ApiResponse({ status: 404, description: 'Result summary not found' })
-  restore(@Param('id') id: string): Promise<DataResponseDto> {
-    return this.resultSummaryService.restore(id);
+    return this.resultSummaryService.remove(id);
   }
 }

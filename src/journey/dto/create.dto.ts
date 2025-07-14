@@ -29,7 +29,7 @@ export class CreateJourneyDto {
 
   @ApiProperty({
     description: 'Media URL for the journey',
-    example: 'https://example.com/journey-video.mp4',
+    example: 'https://example.com/journey-image.jpg',
     maxLength: 255,
     required: false,
   })
