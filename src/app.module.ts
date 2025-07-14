@@ -17,6 +17,8 @@ import { ResultSummaryModule } from './result_summary/result_summary.module';
 import { SharedAuthModule } from './shared/shared-auth.module';
 import { AuthModule } from './auth/auth.module';
 import { NestJwtModule } from './auth/strategy/jwt_access.strategy';
+import { MediaModule } from './media/media.module';
+import { JourneyModule } from './journey/journey.module';
 
 @Module({
   imports: [
@@ -28,7 +30,8 @@ import { NestJwtModule } from './auth/strategy/jwt_access.strategy';
 
     AuthModule,
     UserModule,
-
+    MediaModule,
+    JourneyModule,
     ProgramModule,
     ResultModule,
     ResultSummaryModule,
