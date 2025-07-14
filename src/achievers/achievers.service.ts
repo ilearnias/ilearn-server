@@ -12,6 +12,7 @@ import { CreateAchieversDto } from './dto/create.dto';
 import { QueryAchieversDto } from './dto/query.dto';
 import { UpdateAchieversDto } from './dto/update.dto';
 import { DataResponseDto } from '../shared/dto/data-response.dto';
+import { PageOptionsDto } from '../shared/dto/page-option.dto';
 
 /**
  * Service responsible for handling achievers operations
@@ -58,7 +59,6 @@ export class AchieversService {
     try {
       const { page = 1, limit = 10, search, isActive } = params;
 
-      const offset = (page - 1) * limit;
       const whereClause: any = {};
 
       // Add search filter if provided
@@ -75,11 +75,18 @@ export class AchieversService {
         whereClause.isActive = isActive;
       }
 
+      // Create PageOptionsDto for proper pagination
+      const pageOptions = Object.assign(new PageOptionsDto(), {
+        page,
+        limit,
+        query: search || '',
+      });
+
       // Find achievers with pagination
       const { rows, count } = await this.repository.findAndCountAll({
         where: whereClause,
-        offset,
-        limit,
+        offset: pageOptions.offset,
+        limit: pageOptions.limit,
         distinct: true,
         order: [
           ['order', 'ASC'],
@@ -87,14 +94,7 @@ export class AchieversService {
         ],
       });
 
-      const pageOptionsDto = {
-        page,
-        limit,
-        query: search || '',
-        offset: offset,
-      };
-
-      return new DataResponseDto(rows, pageOptionsDto, count);
+      return new DataResponseDto(rows, pageOptions, count);
     } catch (error) {
       console.log(error);
       if (error instanceof HttpException) throw error;
