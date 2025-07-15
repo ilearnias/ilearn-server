@@ -77,7 +77,14 @@ export class ProgramService {
         ],
       });
 
-      return new DataResponseDto(rows, true, `Found ${count} programs`);
+      const pageOptionsDto = {
+        page,
+        limit,
+        query: title || '',
+        offset: offset,
+      };
+
+      return new DataResponseDto(rows, pageOptionsDto, count);
     } catch (error) {
       console.log(error);
       if (error instanceof HttpException) throw error;

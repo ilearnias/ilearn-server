@@ -88,7 +88,7 @@ export class DataResponseDto {
     //===============================================================
     function isValid(obj: any) {
       if (typeof obj != 'object' || obj == null) return false;
-      if ('take' in obj && 'page' in obj) return true;
+      if ('limit' in obj && 'page' in obj) return true;
       return false;
     }
     function getMessage(

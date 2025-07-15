@@ -21,10 +21,7 @@ export class Program extends Model {
   })
   description: string;
 
-  @Column({
-    type: DataType.ENUM('Active', 'Inactive', 'Upcoming'),
-    allowNull: false,
-  })
+  @Column({ type: DataType.STRING(255), allowNull: false })
   status: string;
 
   @Column({ type: DataType.FLOAT, allowNull: false })
