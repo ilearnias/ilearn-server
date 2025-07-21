@@ -20,8 +20,8 @@ export class CreateMediaDto {
   description?: string;
 
   @ApiProperty({
-    description: 'Video URL',
-    example: 'https://example.com/video.mp4',
+    description: 'Video ID',
+    example: '1234567890',
     maxLength: 255,
     required: false,
   })
