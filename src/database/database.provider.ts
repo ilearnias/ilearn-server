@@ -36,7 +36,7 @@ export const databaseProvider = {
       ResultSummary,
       SuccessStories,
     ]);
-    // await sequelize.sync();
+    await sequelize.sync();
     return sequelize;
   },
   inject: [ConfigurationService],

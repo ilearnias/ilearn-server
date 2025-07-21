@@ -30,6 +30,7 @@ export class ResultSummaryController {
   constructor(private readonly resultSummaryService: ResultSummaryService) {}
 
   @Post()
+  @Public()
   @ApiBearerAuth()
   @ApiOperation({ summary: 'Create a new result summary' })
   @ApiResponse({
@@ -72,6 +73,7 @@ export class ResultSummaryController {
   }
 
   @Patch(':id')
+  @Public()
   @ApiBearerAuth()
   @ApiOperation({ summary: 'Update a result summary' })
   @ApiResponse({

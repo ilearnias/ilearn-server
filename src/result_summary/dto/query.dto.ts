@@ -53,7 +53,7 @@ export class QueryResultSummaryDto {
   @IsOptional()
   @Type(() => Number)
   @IsNumber()
-  minTotalSelection?: number;
+  minTotalSelection?: number; 
 
   @ApiProperty({
     description: 'Filter by maximum total selection',
