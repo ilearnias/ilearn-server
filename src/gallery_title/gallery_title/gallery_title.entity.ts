@@ -1,4 +1,4 @@
-import { Column, Model, Table, DataType, HasMany } from 'sequelize-typescript';
+import { Column, Model, Table, DataType } from 'sequelize-typescript';
 
 @Table({ tableName: 'gallery_title', paranoid: true })
 export class GalleryTitle extends Model {

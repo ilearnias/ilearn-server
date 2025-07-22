@@ -19,6 +19,7 @@ import { AuthModule } from './auth/auth.module';
 import { NestJwtModule } from './auth/strategy/jwt_access.strategy';
 import { MediaModule } from './media/media.module';
 import { JourneyModule } from './journey/journey.module';
+import { GalleryTitleModule } from './gallery_title/gallery_title/gallery_title.module';
 
 @Module({
   imports: [
@@ -38,6 +39,7 @@ import { JourneyModule } from './journey/journey.module';
     SuccessStoriesModule,
     TeamModule,
     GalleryModule,
+    GalleryTitleModule,
     ContactsModule,
     BlogModule,
     BlogCategoriesModule,
