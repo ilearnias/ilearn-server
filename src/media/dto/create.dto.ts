@@ -20,8 +20,8 @@ export class CreateMediaDto {
   description?: string;
 
   @ApiProperty({
-    description: 'Video URL',
-    example: 'https://example.com/video.mp4',
+    description: 'Video ID',
+    example: '1234567890',
     maxLength: 255,
     required: false,
   })
@@ -58,4 +58,15 @@ export class CreateMediaDto {
   @IsOptional()
   @IsBoolean()
   isTestimonial?: boolean;
+
+  @ApiProperty({
+    description: 'Thumbnail image URL or path',
+    example: 'https://example.com/thumbnail.jpg',
+    maxLength: 255,
+    required: false,
+  })
+  @IsOptional()
+  @IsString()
+  @MaxLength(255)
+  thumbnail?: string;
 }

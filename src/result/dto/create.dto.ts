@@ -39,6 +39,17 @@ export class CreateResultDto {
   media?: string;
 
   @ApiProperty({
+    description: 'Thumbnail image URL or path',
+    example: 'https://example.com/thumbnail.jpg',
+    maxLength: 255,
+    required: false,
+  })
+  @IsOptional()
+  @IsString()
+  @MaxLength(255)
+  thumbnail?: string;
+
+  @ApiProperty({
     description: 'Order/position of the result',
     example: 1.0,
     required: false,

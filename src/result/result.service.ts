@@ -24,6 +24,7 @@ export class ResultService {
     try {
       const result = await this.repository.create({
         ...createDto,
+        thumbnail: createDto.thumbnail,
         isActive: createDto.isActive ?? true,
       });
       return new DataResponseDto(result, true, 'Result created successfully');
@@ -99,7 +100,10 @@ export class ResultService {
       if (!result) {
         throw new NotFoundException(`Result with ID ${id} not found`);
       }
-      await result.update(updateDto);
+      await result.update({
+        ...updateDto,
+        thumbnail: updateDto.thumbnail,
+      });
       return new DataResponseDto(result, true, 'Result updated successfully');
     } catch (error) {
       console.log(error);

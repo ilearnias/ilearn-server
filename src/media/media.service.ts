@@ -34,6 +34,7 @@ export class MediaService {
       // Create new media entry
       const media = await this.repository.create({
         ...createDto,
+        thumbnail: createDto.thumbnail,
         isActive: createDto.isActive ?? true,
       });
 
@@ -155,7 +156,10 @@ export class MediaService {
       }
 
       // Update media entry
-      await media.update(updateDto);
+      await media.update({
+        ...updateDto,
+        thumbnail: updateDto.thumbnail,
+      });
 
       return new DataResponseDto(
         media,
