@@ -61,5 +61,5 @@ export class Journey extends Model {
     type: DataType.BOOLEAN,
     defaultValue: false,
   })
-  isFeatured: boolean;
+  isImage: boolean;
 }

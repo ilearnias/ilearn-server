@@ -63,7 +63,6 @@ export class CreateJourneyDto {
     required: false,
     default: false,
   })
-  @IsOptional()
   @IsBoolean()
-  isFeatured?: boolean;
+  isImage?: boolean;
 }
