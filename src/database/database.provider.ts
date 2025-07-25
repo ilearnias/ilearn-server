@@ -14,6 +14,7 @@ import { Media } from '../media/media.entity';
 import { SuccessStories } from '../success_stories/success_stories.entity';
 import { Result } from '../result/result.entity';
 import { ResultSummary } from '../result_summary/result_summary.entity';
+import { GalleryTitle } from '../gallery_title/gallery_title/gallery_title.entity';
 
 export const databaseProvider = {
   provide: 'SEQUELIZE',
@@ -29,7 +30,7 @@ export const databaseProvider = {
       BlogCategories,
       Contacts,
       Gallery,
-      // GalleryTitle,
+      GalleryTitle,
       Journey,
       Media,
       Result,
