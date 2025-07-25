@@ -16,11 +16,21 @@ export class Gallery extends Model {
   title: string;
 
   @Column({
-    type: DataType.ARRAY(DataType.STRING),
+    type: DataType.STRING,
+    allowNull: false,
+  })
+  description: string;
+
+  @Column({
+    type: DataType.JSONB,
     allowNull: false,
     defaultValue: [],
   })
-  images: string[];
+  images: {
+    subtitle: string;
+    description: string;
+    image: string;
+  }[];
 
   @Column({
     type: DataType.INTEGER,

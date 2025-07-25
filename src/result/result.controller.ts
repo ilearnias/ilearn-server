@@ -32,6 +32,7 @@ export class ResultController {
   constructor(private readonly resultService: ResultService) {}
 
   @Post()
+  @Public()
   @HttpCode(HttpStatus.CREATED)
   @ApiOperation({ summary: 'Create a new result' })
   @ApiResponse({ status: 201, description: 'Result created successfully' })

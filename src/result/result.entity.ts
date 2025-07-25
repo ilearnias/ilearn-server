@@ -46,6 +46,18 @@ export class Result extends Model {
   isActive: boolean;
 
   @Column({
+    type: DataType.STRING(10),
+    allowNull: false,
+  })
+  aspectRatio: string;
+
+  @Column({
+    type: DataType.STRING(255),
+    allowNull: false,
+  })
+  title: string;
+
+  @Column({
     type: DataType.DATE,
     defaultValue: DataType.NOW,
   })

@@ -54,4 +54,23 @@ export class QueryJourneyDto {
   @Type(() => Boolean)
   @IsBoolean()
   isActive?: boolean;
+
+  @ApiProperty({
+    description: 'Filter by featured status',
+    required: false,
+    type: Boolean,
+  })
+  @IsOptional()
+  @Type(() => Boolean)
+  @IsBoolean()
+  isImage?: boolean;
+
+  @ApiProperty({
+    description: 'Filter by title',
+    required: false,
+    type: String,
+  })
+  @IsOptional()
+  @IsString()
+  title?: string;
 }

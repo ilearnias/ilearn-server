@@ -56,7 +56,7 @@ export class JourneyService {
    */
   async findAll(params: QueryJourneyDto): Promise<DataResponseDto> {
     try {
-      const { page = 1, limit = 10, search, year, isActive } = params;
+      const { page = 1, limit = 10, search, year, isActive, isImage } = params;
 
       const offset = (page - 1) * limit;
       const whereClause: any = {};
@@ -79,6 +79,10 @@ export class JourneyService {
       // Add active status filter if provided
       if (isActive !== undefined) {
         whereClause.isActive = isActive;
+      }
+
+      if (isImage !== undefined) {
+        whereClause.isImage = isImage;
       }
 
       // Find journey entries with pagination

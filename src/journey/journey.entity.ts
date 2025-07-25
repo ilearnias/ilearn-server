@@ -28,6 +28,12 @@ export class Journey extends Model {
   media: string;
 
   @Column({
+    type: DataType.STRING(255),
+    allowNull: false,
+  })
+  title: string;
+
+  @Column({
     type: DataType.FLOAT,
     allowNull: true,
   })
@@ -56,4 +62,10 @@ export class Journey extends Model {
     allowNull: true,
   })
   deletedAt: Date;
+
+  @Column({
+    type: DataType.BOOLEAN,
+    defaultValue: false,
+  })
+  isImage: boolean;
 }
