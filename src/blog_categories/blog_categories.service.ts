@@ -18,7 +18,7 @@ export class BlogCategoriesService {
   constructor(
     @Inject('BlogCategoriesProvider')
     private repository: typeof BlogCategories,
-  ) { }
+  ) {}
 
   async create(createDto: CreateBlogCategoriesDto): Promise<DataResponseDto> {
     try {

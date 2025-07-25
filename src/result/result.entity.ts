@@ -28,6 +28,12 @@ export class Result extends Model {
   media: string;
 
   @Column({
+    type: DataType.STRING(255),
+    allowNull: true,
+  })
+  thumbnail: string;
+
+  @Column({
     type: DataType.FLOAT,
     allowNull: true,
   })
