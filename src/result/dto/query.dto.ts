@@ -54,4 +54,22 @@ export class QueryResultDto {
   @Type(() => Boolean)
   @IsBoolean()
   isActive?: boolean;
+
+  @ApiProperty({
+    description: 'Filter by aspect ratio',
+    required: false,
+    type: String,
+  })
+  @IsOptional()
+  @IsString()
+  aspectRatio?: string;
+
+  @ApiProperty({
+    description: 'Filter by title',
+    required: false,
+    type: String,
+  })
+  @IsOptional()
+  @IsString()
+  title?: string;
 }

@@ -14,4 +14,26 @@ export class UpdateResultDto extends PartialType(CreateResultDto) {
   @IsString()
   @MaxLength(255)
   thumbnail?: string;
+
+  @ApiProperty({
+    description: 'Aspect ratio of the result media',
+    example: '16:9',
+    maxLength: 10,
+    required: false,
+  })
+  @IsOptional()
+  @IsString()
+  @MaxLength(10)
+  aspectRatio?: string;
+
+  @ApiProperty({
+    description: 'Title of the result',
+    example: 'Top Scorer 2023',
+    maxLength: 255,
+    required: false,
+  })
+  @IsOptional()
+  @IsString()
+  @MaxLength(255)
+  title?: string;
 }

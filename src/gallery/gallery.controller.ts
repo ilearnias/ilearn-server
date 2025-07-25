@@ -28,6 +28,7 @@ import { QueryGalleryDto } from './dto/query.dto';
 import { UpdateGalleryDto } from './dto/update.dto';
 import { DataResponseDto } from '../shared/dto/data-response.dto';
 import { Public } from '../shared/decorators/public.decorator';
+import { PaginationGalleryDto } from './dto/pagination.dto';
 
 @ApiTags('Gallery')
 @Controller('admin/gallery')
@@ -80,7 +81,7 @@ export class GalleryController {
     description: 'Gallery items retrieved successfully',
     type: DataResponseDto,
   })
-  async findAll(@Query() query: QueryGalleryDto): Promise<DataResponseDto> {
+  async findAll(@Query() query: PaginationGalleryDto): Promise<DataResponseDto> {
     return await this.galleryService.findAll(query);
   }
 

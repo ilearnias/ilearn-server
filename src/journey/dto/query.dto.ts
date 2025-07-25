@@ -64,4 +64,13 @@ export class QueryJourneyDto {
   @Type(() => Boolean)
   @IsBoolean()
   isImage?: boolean;
+
+  @ApiProperty({
+    description: 'Filter by title',
+    required: false,
+    type: String,
+  })
+  @IsOptional()
+  @IsString()
+  title?: string;
 }

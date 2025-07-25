@@ -1,8 +1,8 @@
 import { ApiPropertyOptional } from '@nestjs/swagger';
-import { IsString, IsOptional, IsBoolean } from 'class-validator';
 import { PageOptionsDto } from '../../shared/dto/page-option.dto';
+import { IsOptional, IsString, IsBoolean } from 'class-validator';
 
-export class QueryGalleryDto extends PageOptionsDto {
+export class PaginationGalleryDto extends PageOptionsDto {
   @ApiPropertyOptional({ description: 'Search by title' })
   @IsOptional()
   @IsString()
@@ -17,4 +17,4 @@ export class QueryGalleryDto extends PageOptionsDto {
   @IsOptional()
   @IsBoolean()
   isActive?: boolean;
-}
+} 

@@ -9,6 +9,15 @@ import {
 
 export class CreateJourneyDto {
   @ApiProperty({
+    description: 'Title of the journey',
+    example: 'Our First Milestone',
+    maxLength: 255,
+  })
+  @IsString()
+  @MaxLength(255)
+  title: string;
+
+  @ApiProperty({
     description: 'Year of the journey',
     example: '2023',
     maxLength: 4,

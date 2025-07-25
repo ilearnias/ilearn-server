@@ -1,15 +1,23 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { IsString, IsOptional, IsArray, IsNumber, IsBoolean } from 'class-validator';
+import { GalleryImageDto } from './image.dto';
 
 export class CreateGalleryDto {
   @ApiProperty({ description: 'Title of the gallery item' })
   @IsString()
   title: string;
 
-  @ApiProperty({ description: 'Array of image URLs/paths', type: [String] })
+  @ApiProperty({ description: 'Description of the gallery item' })
+  @IsString()
+  description: string;
+
+  @ApiProperty({
+    description: 'Array of image objects',
+    type: [GalleryImageDto],
+  })
   @IsArray()
-  @IsString({ each: true })
-  images: string[];
+  @IsOptional()
+  images: GalleryImageDto[];
 
   @ApiPropertyOptional({ description: 'Display order of the gallery item' })
   @IsOptional()

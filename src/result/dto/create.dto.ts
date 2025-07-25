@@ -50,6 +50,24 @@ export class CreateResultDto {
   thumbnail?: string;
 
   @ApiProperty({
+    description: 'Aspect ratio of the result media',
+    example: '16:9',
+    maxLength: 10,
+  })
+  @IsString()
+  @MaxLength(10)
+  aspectRatio: string;
+
+  @ApiProperty({
+    description: 'Title of the result',
+    example: 'Top Scorer 2023',
+    maxLength: 255,
+  })
+  @IsString()
+  @MaxLength(255)
+  title: string;
+
+  @ApiProperty({
     description: 'Order/position of the result',
     example: 1.0,
     required: false,

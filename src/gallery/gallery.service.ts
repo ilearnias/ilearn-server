@@ -14,6 +14,8 @@ import { UpdateGalleryDto } from './dto/update.dto';
 import { QueryGalleryDto } from './dto/query.dto';
 import { DataResponseDto } from '../shared/dto/data-response.dto';
 import { UploadService } from '../upload/upload.service';
+import { PageOptionsDto } from '../shared/dto/page-option.dto';
+import { PaginationGalleryDto } from './dto/pagination.dto';
 
 @Injectable()
 export class GalleryService {
@@ -59,6 +61,8 @@ export class GalleryService {
       const gallery = await this.repository.create({
         ...createDto,
         isActive: createDto.isActive ?? true,
+        description: createDto.description,
+        images: createDto.images,
       });
 
       return new DataResponseDto(
@@ -73,16 +77,18 @@ export class GalleryService {
     }
   }
 
-  async findAll(params: QueryGalleryDto): Promise<DataResponseDto> {
+  async findAll(params: PaginationGalleryDto): Promise<DataResponseDto> {
     try {
-      const { page = 1, limit = 10, title, isActive } = params;
+      const { page = 1, limit = 10, title, isActive, description } = params;
       const offset = (page - 1) * limit;
       const whereClause: any = {};
 
       if (title) {
         whereClause.title = { [Op.iLike]: `%${title}%` };
       }
-
+      if (description) {
+        whereClause.description = { [Op.iLike]: `%${description}%` };
+      }
       if (isActive !== undefined) {
         whereClause.isActive = isActive;
       }
@@ -98,7 +104,15 @@ export class GalleryService {
         ],
       });
 
-      return new DataResponseDto(rows, true, `Found ${count} gallery items`);
+      // Construct plain object for meta (PageOptionsDto properties)
+      const pageOptionsDto = {
+        page,
+        limit,
+        query: '',
+        offset,
+      };
+
+      return new DataResponseDto(rows, pageOptionsDto, count);
     } catch (error) {
       console.log(error);
       if (error instanceof HttpException) throw error;
@@ -139,7 +153,11 @@ export class GalleryService {
         throw new NotFoundException(`Gallery item with ID ${id} not found`);
       }
 
-      await gallery.update(updateDto);
+      await gallery.update({
+        ...updateDto,
+        description: updateDto.description,
+        images: updateDto.images,
+      });
 
       return new DataResponseDto(
         gallery,

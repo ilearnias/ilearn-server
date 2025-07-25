@@ -28,6 +28,12 @@ export class Journey extends Model {
   media: string;
 
   @Column({
+    type: DataType.STRING(255),
+    allowNull: false,
+  })
+  title: string;
+
+  @Column({
     type: DataType.FLOAT,
     allowNull: true,
   })
