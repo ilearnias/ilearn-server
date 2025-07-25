@@ -56,4 +56,14 @@ export class CreateJourneyDto {
   @IsOptional()
   @IsBoolean()
   isActive?: boolean;
+
+  @ApiProperty({
+    description: 'Whether the journey is featured',
+    example: true,
+    required: false,
+    default: false,
+  })
+  @IsOptional()
+  @IsBoolean()
+  isFeatured?: boolean;
 }

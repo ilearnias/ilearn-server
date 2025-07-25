@@ -56,4 +56,10 @@ export class Journey extends Model {
     allowNull: true,
   })
   deletedAt: Date;
+
+  @Column({
+    type: DataType.BOOLEAN,
+    defaultValue: false,
+  })
+  isFeatured: boolean;
 }
