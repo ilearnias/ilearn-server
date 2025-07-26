@@ -64,9 +64,9 @@ export class AchieversService {
       // Add search filter if provided
       if (search) {
         whereClause[Op.or] = [
-          { name: { [Op.like]: `%${search}%` } },
-          { details: { [Op.like]: `%${search}%` } },
-          { description: { [Op.like]: `%${search}%` } },
+          { name: { [Op.iLike]: `%${search}%` } },
+          { details: { [Op.iLike]: `%${search}%` } },
+          { description: { [Op.iLike]: `%${search}%` } },
         ];
       }
 
