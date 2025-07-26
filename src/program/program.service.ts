@@ -24,6 +24,7 @@ export class ProgramService {
     try {
       const program = await this.repository.create({
         ...createProgramDto,
+        isActive: createProgramDto.isActive ?? true,
       });
 
       return new DataResponseDto(program, true, 'Program created successfully');
@@ -39,21 +40,30 @@ export class ProgramService {
       const {
         page = 1,
         limit = 10,
-        title,
+        search,
         status,
         minPrice,
         maxPrice,
+        isActive,
       } = params;
 
       const offset = (page - 1) * limit;
       const whereClause: any = {};
 
-      if (title) {
-        whereClause.title = { [Op.iLike]: `%${title}%` };
+      if (search) {
+        whereClause[Op.or] = [
+          { title: { [Op.iLike]: `%${search}%` } },
+          { description: { [Op.iLike]: `%${search}%` } },
+          { sub_title: { [Op.iLike]: `%${search}%` } },
+        ];
       }
 
       if (status) {
         whereClause.status = status;
+      }
+
+      if (isActive !== undefined) {
+        whereClause.isActive = isActive;
       }
 
       if (minPrice !== undefined || maxPrice !== undefined) {
@@ -80,7 +90,7 @@ export class ProgramService {
       const pageOptionsDto = {
         page,
         limit,
-        query: title || '',
+        query: search || '',
         offset: offset,
       };
 

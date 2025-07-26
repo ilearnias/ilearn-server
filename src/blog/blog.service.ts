@@ -43,10 +43,10 @@ export class BlogService {
 
       if (search) {
         whereClause[Op.or] = [
-          { title: { [Op.like]: `%${search}%` } },
-          { subTitle: { [Op.like]: `%${search}%` } },
-          { description: { [Op.like]: `%${search}%` } },
-          { tags: { [Op.like]: `%${search}%` } },
+          { title: { [Op.iLike]: `%${search}%` } },
+          { subTitle: { [Op.iLike]: `%${search}%` } },
+          { description: { [Op.iLike]: `%${search}%` } },
+          { tags: { [Op.iLike]: `%${search}%` } },
         ];
       }
 

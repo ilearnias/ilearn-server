@@ -65,8 +65,8 @@ export class MediaService {
       // Add search filter if provided
       if (search) {
         whereClause[Op.or] = [
-          { description: { [Op.like]: `%${search}%` } },
-          { video: { [Op.like]: `%${search}%` } },
+          { description: { [Op.iLike]: `%${search}%` } },
+          { video: { [Op.iLike]: `%${search}%` } },
         ];
       }
 

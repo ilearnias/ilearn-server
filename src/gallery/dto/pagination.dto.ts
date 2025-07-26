@@ -1,20 +1,21 @@
-import { ApiPropertyOptional } from '@nestjs/swagger';
+import { ApiPropertyOptional, ApiHideProperty } from '@nestjs/swagger';
 import { PageOptionsDto } from '../../shared/dto/page-option.dto';
 import { IsOptional, IsString, IsBoolean } from 'class-validator';
+import { Type } from 'class-transformer';
 
 export class PaginationGalleryDto extends PageOptionsDto {
-  @ApiPropertyOptional({ description: 'Search by title' })
+  @ApiPropertyOptional({ description: 'Search across title and description' })
   @IsOptional()
   @IsString()
-  title?: string;
-
-  @ApiPropertyOptional({ description: 'Search by description' })
-  @IsOptional()
-  @IsString()
-  description?: string;
+  search?: string;
 
   @ApiPropertyOptional({ description: 'Filter by active status' })
   @IsOptional()
+  @Type(() => Boolean)
   @IsBoolean()
   isActive?: boolean;
+
+  // Hide searchField from Swagger
+  @ApiHideProperty()
+  searchField?: string;
 } 

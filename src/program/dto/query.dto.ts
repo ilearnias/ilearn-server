@@ -6,6 +6,7 @@ import {
   IsNumber,
   Min,
   Max,
+  IsBoolean,
 } from 'class-validator';
 import { Type } from 'class-transformer';
 
@@ -17,12 +18,12 @@ enum ProgramStatus {
 
 export class QueryProgramDto {
   @ApiProperty({
-    description: 'Search by title',
+    description: 'Search across title, description, and sub_title',
     required: false,
   })
   @IsOptional()
   @IsString()
-  title?: string;
+  search?: string;
 
   @ApiProperty({
     description: 'Filter by status',
@@ -51,6 +52,15 @@ export class QueryProgramDto {
   @IsNumber()
   @Min(0)
   maxPrice?: number;
+
+  @ApiProperty({
+    description: 'Filter by active status',
+    required: false,
+  })
+  @IsOptional()
+  @Type(() => Boolean)
+  @IsBoolean()
+  isActive?: boolean;
 
   @ApiProperty({
     description: 'Page number',

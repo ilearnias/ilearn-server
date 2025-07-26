@@ -6,6 +6,7 @@ import {
   IsNumber,
   IsBoolean,
 } from 'class-validator';
+import { Type } from 'class-transformer';
 
 export class UpdateProgramDto {
   @ApiProperty({
@@ -55,6 +56,7 @@ export class UpdateProgramDto {
     required: false,
   })
   @IsOptional()
+  @Type(() => Number)
   @IsNumber()
   order?: number;
 
@@ -64,6 +66,7 @@ export class UpdateProgramDto {
     required: false,
   })
   @IsOptional()
+  @Type(() => Boolean)
   @IsBoolean()
   isActive?: boolean;
 }

@@ -1,6 +1,7 @@
 import { IsOptional, IsString, IsBoolean, IsNumber } from 'class-validator';
 import { ApiPropertyOptional } from '@nestjs/swagger';
 import { PageOptionsDto } from '../../shared/dto/page-option.dto';
+import { Type } from 'class-transformer';
 
 export class QueryTeamDto extends PageOptionsDto {
   @ApiPropertyOptional({ description: 'Search by name' })
@@ -25,6 +26,7 @@ export class QueryTeamDto extends PageOptionsDto {
 
   @ApiPropertyOptional({ description: 'Filter by active status' })
   @IsOptional()
+  @Type(() => Boolean)
   @IsBoolean()
   isActive?: boolean;
 }

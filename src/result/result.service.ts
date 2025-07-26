@@ -42,9 +42,10 @@ export class ResultService {
       const whereClause: any = {};
       if (search) {
         whereClause[Op.or] = [
-          { year: { [Op.like]: `%${search}%` } },
-          { description: { [Op.like]: `%${search}%` } },
-          { media: { [Op.like]: `%${search}%` } },
+          { title: { [Op.iLike]: `%${search}%` } },
+          { year: { [Op.iLike]: `%${search}%` } },
+          { description: { [Op.iLike]: `%${search}%` } },
+          { media: { [Op.iLike]: `%${search}%` } },
         ];
       }
       if (year) {

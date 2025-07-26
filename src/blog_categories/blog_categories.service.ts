@@ -45,7 +45,7 @@ export class BlogCategoriesService {
       const whereClause: any = {};
 
       if (search) {
-        whereClause[Op.or] = [{ title: { [Op.like]: `%${search}%` } }];
+        whereClause[Op.or] = [{ title: { [Op.iLike]: `%${search}%` } }];
       }
 
       if (isActive !== undefined) {

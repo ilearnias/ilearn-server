@@ -45,9 +45,9 @@ export class SuccessStoriesService {
       const whereClause: any = {};
       if (search) {
         whereClause[Op.or] = [
-          { name: { [Op.like]: `%${search}%` } },
-          { description: { [Op.like]: `%${search}%` } },
-          { details: { [Op.like]: `%${search}%` } },
+          { name: { [Op.iLike]: `%${search}%` } },
+          { description: { [Op.iLike]: `%${search}%` } },
+          { details: { [Op.iLike]: `%${search}%` } },
         ];
       }
       if (isActive !== undefined) {
