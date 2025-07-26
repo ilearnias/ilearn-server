@@ -18,12 +18,12 @@ enum ProgramStatus {
 
 export class QueryProgramDto {
   @ApiProperty({
-    description: 'Search by title',
+    description: 'Search across title, description, and sub_title',
     required: false,
   })
   @IsOptional()
   @IsString()
-  title?: string;
+  search?: string;
 
   @ApiProperty({
     description: 'Filter by status',

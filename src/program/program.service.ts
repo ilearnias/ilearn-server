@@ -40,7 +40,7 @@ export class ProgramService {
       const {
         page = 1,
         limit = 10,
-        title,
+        search,
         status,
         minPrice,
         maxPrice,
@@ -50,8 +50,12 @@ export class ProgramService {
       const offset = (page - 1) * limit;
       const whereClause: any = {};
 
-      if (title) {
-        whereClause.title = { [Op.iLike]: `%${title}%` };
+      if (search) {
+        whereClause[Op.or] = [
+          { title: { [Op.iLike]: `%${search}%` } },
+          { description: { [Op.iLike]: `%${search}%` } },
+          { sub_title: { [Op.iLike]: `%${search}%` } },
+        ];
       }
 
       if (status) {
@@ -86,7 +90,7 @@ export class ProgramService {
       const pageOptionsDto = {
         page,
         limit,
-        query: title || '',
+        query: search || '',
         offset: offset,
       };
 
