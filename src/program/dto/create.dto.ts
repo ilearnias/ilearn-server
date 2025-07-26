@@ -1,5 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsString, IsNotEmpty, IsNumber, IsOptional } from 'class-validator';
+import { IsString, IsNotEmpty, IsNumber, IsOptional, IsBoolean } from 'class-validator';
+import { Type } from 'class-transformer';
 
 export class CreateProgramDto {
   @ApiProperty({
@@ -25,6 +26,7 @@ export class CreateProgramDto {
     example: 1,
   })
   @IsNotEmpty()
+  @Type(() => Number)
   @IsNumber()
   order: number;
 
@@ -47,4 +49,15 @@ export class CreateProgramDto {
   @IsOptional()
   @IsString()
   sub_title?: string;
+
+  @ApiProperty({
+    description: 'Whether the program is active',
+    example: true,
+    required: false,
+    default: true,
+  })
+  @IsOptional()
+  @Type(() => Boolean)
+  @IsBoolean()
+  isActive?: boolean;
 }

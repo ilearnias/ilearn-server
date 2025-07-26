@@ -24,6 +24,7 @@ export class ProgramService {
     try {
       const program = await this.repository.create({
         ...createProgramDto,
+        isActive: createProgramDto.isActive ?? true,
       });
 
       return new DataResponseDto(program, true, 'Program created successfully');
@@ -43,6 +44,7 @@ export class ProgramService {
         status,
         minPrice,
         maxPrice,
+        isActive,
       } = params;
 
       const offset = (page - 1) * limit;
@@ -54,6 +56,10 @@ export class ProgramService {
 
       if (status) {
         whereClause.status = status;
+      }
+
+      if (isActive !== undefined) {
+        whereClause.isActive = isActive;
       }
 
       if (minPrice !== undefined || maxPrice !== undefined) {

@@ -27,6 +27,9 @@ export class Program extends Model {
   @Column({ type: DataType.FLOAT, allowNull: false })
   order: number;
 
+  @Column({ type: DataType.BOOLEAN, defaultValue: true })
+  isActive: boolean;
+
   @Column({ type: DataType.STRING(255), allowNull: true })
   route: string;
 

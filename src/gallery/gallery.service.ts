@@ -79,16 +79,17 @@ export class GalleryService {
 
   async findAll(params: PaginationGalleryDto): Promise<DataResponseDto> {
     try {
-      const { page = 1, limit = 10, title, isActive, description } = params;
+      const { page = 1, limit = 10, search, isActive } = params;
       const offset = (page - 1) * limit;
       const whereClause: any = {};
 
-      if (title) {
-        whereClause.title = { [Op.iLike]: `%${title}%` };
+      if (search) {
+        whereClause[Op.or] = [
+          { title: { [Op.iLike]: `%${search}%` } },
+          { description: { [Op.iLike]: `%${search}%` } },
+        ];
       }
-      if (description) {
-        whereClause.description = { [Op.iLike]: `%${description}%` };
-      }
+
       if (isActive !== undefined) {
         whereClause.isActive = isActive;
       }
@@ -108,7 +109,7 @@ export class GalleryService {
       const pageOptionsDto = {
         page,
         limit,
-        query: '',
+        query: search || '',
         offset,
       };
 
